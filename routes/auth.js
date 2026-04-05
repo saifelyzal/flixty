@@ -113,4 +113,48 @@ router.get('/youtube/callback', async (req, res) => {
 })
 router.delete('/youtube', (_req, res) => { removeToken('youtube'); res.json({ ok: true }) })
 
+// ── Facebook Data Deletion Callback ──
+// Required by Facebook for apps using Facebook Login.
+// Facebook sends a signed_request; we delete all stored Facebook/Instagram data
+// and return a confirmation URL the user can visit to verify deletion.
+router.post('/facebook/data-deletion', (req, res) => {
+  try {
+    const signedRequest = req.body.signed_request
+    if (!signedRequest) return res.status(400).json({ error: 'Missing signed_request' })
+
+    const [encodedSig, payload] = signedRequest.split('.')
+    const data = JSON.parse(Buffer.from(payload, 'base64url').toString('utf8'))
+
+    // Verify HMAC-SHA256 signature
+    const expectedSig = crypto
+      .createHmac('sha256', process.env.FB_APP_SECRET)
+      .update(payload)
+      .digest('base64url')
+
+    if (encodedSig !== expectedSig) return res.status(403).json({ error: 'Invalid signature' })
+
+    // Delete all Facebook and Instagram data for this user
+    removeToken('facebook')
+    removeToken('instagram')
+
+    const confirmationCode = `del_${data.user_id}_${Date.now()}`
+    res.json({
+      url: `${process.env.BASE_URL}/deletion-status?code=${confirmationCode}`,
+      confirmation_code: confirmationCode,
+    })
+  } catch (e) {
+    res.status(400).json({ error: e.message })
+  }
+})
+
+// Deletion status page — shown to users who want to confirm their data was deleted
+router.get('/facebook/deletion-status', (req, res) => {
+  const code = req.query.code || ''
+  res.send(`<html><body style="font-family:sans-serif;padding:2rem">
+    <h2>Data Deletion Confirmed</h2>
+    <p>Your Facebook and Instagram data has been removed from Flixty.</p>
+    ${code ? `<p>Confirmation code: <code>${code}</code></p>` : ''}
+  </body></html>`)
+})
+
 export default router
