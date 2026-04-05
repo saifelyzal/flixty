@@ -3,7 +3,7 @@ import axios from 'axios'
 const CLIENT_ID = process.env.LINKEDIN_CLIENT_ID
 const CLIENT_SECRET = process.env.LINKEDIN_CLIENT_SECRET
 const REDIRECT_URI = `${process.env.BASE_URL}/auth/linkedin/callback`
-const SCOPES = ['w_member_social', 'r_liteprofile']
+const SCOPES = ['w_member_social', 'openid', 'profile', 'email']
 
 export function getAuthUrl(state) {
   const p = new URLSearchParams({
@@ -23,7 +23,7 @@ export async function exchangeCode(code) {
 }
 
 export async function getProfile(accessToken) {
-  const { data } = await axios.get('https://api.linkedin.com/v2/me', {
+  const { data } = await axios.get('https://api.linkedin.com/v2/userinfo', {
     headers: { Authorization: `Bearer ${accessToken}` }
   })
   return data

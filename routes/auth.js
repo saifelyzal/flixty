@@ -52,7 +52,7 @@ router.get('/linkedin/callback', async (req, res) => {
   try {
     const tok = await linkedin.exchangeCode(req.query.code)
     const profile = await linkedin.getProfile(tok.access_token)
-    saveToken('linkedin', { ...tok, personId: profile.id })
+    saveToken('linkedin', { ...tok, personId: profile.sub })
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.message || e.message) }
 })
