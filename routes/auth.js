@@ -69,7 +69,11 @@ router.get('/facebook/callback', async (req, res) => {
   try {
     const tok = await facebook.exchangeCode(req.query.code)
     const pages = await facebook.getPages(tok.access_token)
-    if (!pages.length) throw new Error('No Facebook Pages found — create a Page first.')
+    console.log('[facebook] pages response:', JSON.stringify(pages))
+    if (!pages.length) throw new Error(
+      'No Facebook Pages found. Make sure: (1) you have a Facebook Page, ' +
+      '(2) your app has pages_show_list scope, (3) you are an Admin of the Page.'
+    )
     const page = pages[0]
     saveToken('facebook', { userToken: tok.access_token, pageToken: page.access_token, pageId: page.id, pageName: page.name })
     const igId = await facebook.getInstagramAccountId(page.id, page.access_token)
