@@ -27,9 +27,11 @@ export async function exchangeCode(code) {
 
 export async function getPages(userToken) {
   const { data } = await axios.get('https://graph.facebook.com/v19.0/me/accounts', {
-    params: { access_token: userToken }
+    params: { access_token: userToken, fields: 'id,name,access_token,tasks' }
   })
-  return data.data // [{ id, name, access_token }]
+  console.log('[facebook] /me/accounts raw:', JSON.stringify(data))
+  if (data.error) throw new Error(`Facebook API error: ${data.error.message} (code ${data.error.code})`)
+  return data.data ?? []
 }
 
 export async function postToPage(pageToken, pageId, message) {
