@@ -2706,7 +2706,7 @@
       btn.classList.add('active');
     }
 
-    // OAuth connection status — polls /auth/status and lights up sidebar dots
+    // OAuth connection status — polls /auth/status and lights up sidebar dots + live view
     async function checkConnectionStatus() {
       try {
         const res = await fetch(`${BACKEND}/auth/status`)
@@ -2723,6 +2723,8 @@
             dot.classList.add('bg-surface-container-highest')
           }
         })
+        initLiveView(status)
+        initPreviewNames(status)
       } catch (e) { /* backend not running — silent */ }
     }
 
