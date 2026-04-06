@@ -9,6 +9,8 @@ import authRoutes from './routes/auth.js'
 import postRoutes from './routes/posts.js'
 import aiRoutes from './routes/ai.js'
 import liveRoutes from './routes/live.js'
+import userRoutes from './routes/user.js'
+import { requireAuth } from './lib/auth.js'
 import { startScheduler } from './lib/scheduler.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
@@ -20,7 +22,7 @@ fs.mkdirSync(path.join(__dirname, 'data/uploads'), { recursive: true })
 const app = express()
 
 app.use(cors({
-  origin: true, // allow all origins (local HTML file uses origin: null)
+  origin: true,
   credentials: true
 }))
 app.use(express.json({ limit: '10mb' }))
@@ -29,7 +31,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET || 'curator-dev-secret',
   resave: false,
   saveUninitialized: false,
-  cookie: { secure: false, maxAge: 24 * 60 * 60 * 1000 }
+  cookie: { secure: false, maxAge: 7 * 24 * 60 * 60 * 1000 } // 7-day session
 }))
 
 // Serve frontend
@@ -38,21 +40,24 @@ app.use(express.static(path.join(__dirname, 'public')))
 // Serve uploaded files publicly
 app.use('/uploads', express.static(path.join(__dirname, 'data/uploads')))
 
-app.use('/auth', authRoutes)
-app.use('/api', postRoutes)
-app.use('/api/ai', aiRoutes)
-app.use('/api/live', liveRoutes)
+// User auth routes — public (no requireAuth)
+app.use('/api/user', userRoutes)
 
-// index.html is served automatically by express.static above
+// Platform OAuth routes — callbacks are public (they come from OAuth providers),
+// initiation and status require login
+app.use('/auth', authRoutes)
+
+// Protected API routes
+app.use('/api', requireAuth, postRoutes)
+app.use('/api/ai', requireAuth, aiRoutes)
+app.use('/api/live', requireAuth, liveRoutes)
+
 app.get('/health', (_req, res) => res.json({ ok: true, time: new Date().toISOString() }))
 
 app.listen(PORT, () => {
-  console.log(`\n🚀  Curator backend → http://localhost:${PORT}`)
+  console.log(`\n🚀  Flixty backend → http://localhost:${PORT}`)
   console.log(`🔑  OAuth callbacks use BASE_URL=${process.env.BASE_URL || `http://localhost:${PORT}`}`)
-  console.log(`📡  Connect platforms:`)
-  console.log(`    X:         http://localhost:${PORT}/auth/x`)
-  console.log(`    LinkedIn:  http://localhost:${PORT}/auth/linkedin`)
-  console.log(`    Facebook:  http://localhost:${PORT}/auth/facebook  (also connects Instagram)\n`)
+  console.log(`📡  Connect platforms at /auth/{x,linkedin,facebook,youtube,tiktok}\n`)
 })
 
 startScheduler()
