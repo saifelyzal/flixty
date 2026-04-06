@@ -356,18 +356,36 @@
 <body
   class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container transition-colors duration-300">
 
-<!-- ── AUTH SCREEN (shown when not logged in) ── -->
-<div id="auth-screen" class="fixed inset-0 z-[999] flex items-center justify-center" style="background:#060709">
-  <div class="w-full max-w-sm mx-4">
+<!-- ── AUTH MODAL (shown on demand when action requires login) ── -->
+<div id="auth-screen" class="hidden fixed inset-0 z-[999] flex items-center justify-center" style="background:rgba(6,7,9,0.92);backdrop-filter:blur(8px)">
+  <div class="w-full max-w-sm mx-4 relative">
 
     <!-- Logo -->
-    <div class="flex items-center justify-center gap-3 mb-8">
-      <img src="/LFITX.png" alt="Flixty" class="h-10 w-auto object-contain"/>
-      <span class="text-xl font-black text-on-surface tracking-tight">Flixty</span>
+    <div class="flex items-center justify-center mb-8">
+      <img src="/LFITX.png" alt="Flixty" class="h-12 w-auto object-contain"/>
     </div>
 
     <!-- Card -->
     <div class="rounded-2xl p-7" style="background:#0d1018;border:1px solid rgba(0,229,204,0.25);box-shadow:0 0 40px rgba(0,229,204,0.08)">
+
+      <!-- Google Sign-In -->
+      <button onclick="googleSignIn()"
+        class="w-full flex items-center justify-center gap-3 py-2.5 rounded-xl text-sm font-semibold transition-all mb-5"
+        style="background:#fff;color:#1f1f1f;box-shadow:0 1px 3px rgba(0,0,0,0.4)">
+        <svg class="w-4 h-4 shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l3.66-2.84z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex-1 h-px" style="background:rgba(255,255,255,0.08)"></div>
+        <span class="text-[11px] text-on-surface-variant/50">or</span>
+        <div class="flex-1 h-px" style="background:rgba(255,255,255,0.08)"></div>
+      </div>
 
       <!-- Tabs -->
       <div class="flex rounded-xl p-1 mb-6 gap-1" style="background:#060709">
@@ -429,6 +447,7 @@
     <p class="text-center text-[11px] text-on-surface-variant/50 mt-5">
       Your data is stored locally on this server.
     </p>
+    <button onclick="dismissAuthModal()" class="block mx-auto mt-3 text-xs text-on-surface-variant/40 hover:text-on-surface-variant transition-colors">Maybe later</button>
   </div>
 </div>
 
@@ -2107,6 +2126,20 @@
 
     // ── Auth ──────────────────────────────────────────────────────────────────
 
+    function googleSignIn() {
+      window.open(BACKEND + '/api/user/google', 'google-login', 'width=520,height=620,scrollbars=yes')
+    }
+
+    // Handle Google Sign-In popup success
+    window.addEventListener('message', function (e) {
+      if (e.data === 'google-login-success') {
+        fetch(BACKEND + '/api/user/me', { credentials: 'include' })
+          .then(r => r.json())
+          .then(user => onAuthSuccess(user))
+          .catch(() => showToast('Google sign-in failed — please try again'))
+      }
+    })
+
     function switchAuthTab(tab) {
       var loginForm = document.getElementById('auth-login-form')
       var regForm   = document.getElementById('auth-register-form')
@@ -2159,31 +2192,63 @@
       finally { btn.textContent = 'Create Account'; btn.disabled = false }
     }
 
+    // Callback to run after the user successfully logs in via the modal
+    var _pendingAuthCallback = null
+
+    function showAuthModal(callback) {
+      _pendingAuthCallback = callback || null
+      var screen = document.getElementById('auth-screen')
+      screen.classList.remove('hidden')
+      screen.style.display = 'flex'
+      // Reset to login tab each time
+      switchAuthTab('login')
+    }
+
+    function dismissAuthModal() {
+      document.getElementById('auth-screen').classList.add('hidden')
+      document.getElementById('auth-screen').style.display = ''
+      _pendingAuthCallback = null
+    }
+
+    // Require login before running an action — show modal if not logged in
+    var _currentUser = null
+    function requireAuthThen(callback) {
+      if (_currentUser) { callback(); return }
+      showAuthModal(callback)
+    }
+
     function onAuthSuccess(user) {
-      document.getElementById('auth-screen').style.display = 'none'
+      _currentUser = user
+      dismissAuthModal()
       var av = document.getElementById('user-avatar')
       var dn = document.getElementById('user-dropdown-name')
       if (av) av.textContent = (user.name || user.email).slice(0, 2).toUpperCase()
       if (dn) dn.textContent = user.name || user.email
-      checkConnectionStatus()
-      initRealData()
+      // Run any deferred action that triggered the login prompt
+      if (_pendingAuthCallback) {
+        var cb = _pendingAuthCallback
+        _pendingAuthCallback = null
+        cb()
+      }
     }
 
     async function logoutUser() {
       await fetch(BACKEND + '/api/user/logout', { method: 'POST', credentials: 'include' })
+      _currentUser = null
       location.reload()
     }
 
     async function checkAuth() {
+      // Silently check session — dashboard is always visible, no blocking
       try {
         const res = await fetch(BACKEND + '/api/user/me', { credentials: 'include' })
         if (res.ok) {
           const user = await res.json()
           onAuthSuccess(user)
         }
-        // If 401, auth screen stays visible — user must log in
+        // If 401, dashboard stays visible — auth modal appears only when action is attempted
       } catch {
-        // Backend unreachable — keep auth screen
+        // Backend unreachable — dashboard still visible
       }
     }
 
@@ -2550,6 +2615,7 @@
     }
 
     async function confirmSchedule() {
+      if (!_currentUser) { showAuthModal(confirmSchedule); return }
       const text = document.getElementById('post-textarea').value.trim()
       if (!text) { showToast('Write something first!'); return }
 
@@ -2577,6 +2643,7 @@
     }
 
     async function publishNow() {
+      if (!_currentUser) { showAuthModal(publishNow); return }
       const text = document.getElementById('post-textarea').value.trim()
       if (!text) { showToast('Write something first!'); return }
       if (!activePlatforms.size) { showToast('Select at least one platform'); return }
@@ -2661,6 +2728,7 @@
 
     // Open OAuth popup for a given platform
     function connectPlatform(platform) {
+      if (!_currentUser) { showAuthModal(() => connectPlatform(platform)); return }
       var urls = {
         x: `${BACKEND}/auth/x`,
         linkedin: `${BACKEND}/auth/linkedin`,
@@ -2674,9 +2742,11 @@
       window.open(url, 'oauth', 'width=600,height=700,scrollbars=yes')
     }
 
-    // Initialise on load
+    // Initialise on load — dashboard always visible, checkAuth silently restores session
     window.addEventListener('DOMContentLoaded', function () {
-      checkAuth() // shows auth screen if not logged in, calls initRealData() on success
+      checkConnectionStatus()
+      initRealData()
+      checkAuth() // silently restores session if cookie is valid; no blocking
       // Refresh connection status after an OAuth popup closes successfully
       window.addEventListener('message', function (e) {
         if (e.data === 'oauth-success') checkConnectionStatus()
@@ -2689,6 +2759,7 @@
     var aiCurrentText = ''
 
     function openAiPanel() {
+      if (!_currentUser) { showAuthModal(openAiPanel); return }
       document.getElementById('ai-panel').classList.remove('translate-x-full')
       document.getElementById('ai-backdrop').classList.remove('hidden')
     }
@@ -3729,6 +3800,7 @@
     }
 
     async function startLiveStream() {
+      if (!_currentUser) { showAuthModal(startLiveStream); return }
       var title = (document.getElementById('live-title') || {}).value?.trim()
       var desc  = (document.getElementById('live-desc') || {}).value?.trim() || ''
       if (!title) { showToast('Enter a stream title first'); return }

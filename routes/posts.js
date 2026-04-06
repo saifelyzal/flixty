@@ -10,6 +10,7 @@ import * as youtube from '../platforms/youtube.js'
 import * as tiktok from '../platforms/tiktok.js'
 import { getTokens, saveToken, savePost, getPosts, saveScheduled, getScheduled, removeScheduled } from '../lib/store.js'
 import { publishPost } from '../lib/scheduler.js'
+import { requireAuth } from '../lib/auth.js'
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 const upload = multer({
@@ -22,7 +23,7 @@ const upload = multer({
 
 const router = Router()
 
-router.post('/publish', upload.single('media'), async (req, res) => {
+router.post('/publish', requireAuth, upload.single('media'), async (req, res) => {
   const { text, imageUrl } = req.body
   const platforms = JSON.parse(req.body.platforms || '[]')
   const tokens = getTokens()
@@ -78,7 +79,7 @@ router.post('/publish', upload.single('media'), async (req, res) => {
   res.json({ ok: Object.keys(results).length > 0, results, errors, post })
 })
 
-router.post('/schedule', upload.single('media'), async (req, res) => {
+router.post('/schedule', requireAuth, upload.single('media'), async (req, res) => {
   const { text, scheduledAt, imageUrl, campaignName } = req.body
   const platforms = JSON.parse(req.body.platforms || '[]')
   if (!scheduledAt) return res.status(400).json({ error: 'scheduledAt required (ISO 8601)' })
@@ -88,7 +89,7 @@ router.post('/schedule', upload.single('media'), async (req, res) => {
   res.json({ ok: true, scheduled: item })
 })
 
-router.delete('/scheduled/:id', (req, res) => {
+router.delete('/scheduled/:id', requireAuth, (req, res) => {
   removeScheduled(Number(req.params.id))
   res.json({ ok: true })
 })

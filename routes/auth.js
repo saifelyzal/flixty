@@ -6,6 +6,7 @@ import * as facebook from '../platforms/facebook.js'
 import * as youtube from '../platforms/youtube.js'
 import * as tiktok from '../platforms/tiktok.js'
 import { saveToken, removeToken, getTokens } from '../lib/store.js'
+import { requireAuth } from '../lib/auth.js'
 
 const router = Router()
 const SUCCESS_HTML = `<html><body><script>
@@ -26,7 +27,7 @@ router.get('/status', (_req, res) => {
 })
 
 // ── X / Twitter ──
-router.get('/x', (req, res) => {
+router.get('/x', requireAuth, (req, res) => {
   const state = crypto.randomBytes(16).toString('hex')
   req.session.xState = state
   res.redirect(twitter.getAuthUrl(state))
@@ -40,10 +41,10 @@ router.get('/x/callback', async (req, res) => {
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.error_description || e.message) }
 })
-router.delete('/x', (_req, res) => { removeToken('x'); res.json({ ok: true }) })
+router.delete('/x', requireAuth, (_req, res) => { removeToken('x'); res.json({ ok: true }) })
 
 // ── LinkedIn ──
-router.get('/linkedin', (req, res) => {
+router.get('/linkedin', requireAuth, (req, res) => {
   const state = crypto.randomBytes(16).toString('hex')
   req.session.liState = state
   res.redirect(linkedin.getAuthUrl(state))
@@ -57,10 +58,10 @@ router.get('/linkedin/callback', async (req, res) => {
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.message || e.message) }
 })
-router.delete('/linkedin', (_req, res) => { removeToken('linkedin'); res.json({ ok: true }) })
+router.delete('/linkedin', requireAuth, (_req, res) => { removeToken('linkedin'); res.json({ ok: true }) })
 
 // ── Facebook + Instagram (single OAuth flow) ──
-router.get('/facebook', (req, res) => {
+router.get('/facebook', requireAuth, (req, res) => {
   const state = crypto.randomBytes(16).toString('hex')
   req.session.fbState = state
   res.redirect(facebook.getAuthUrl(state))
@@ -82,10 +83,10 @@ router.get('/facebook/callback', async (req, res) => {
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.error?.message || e.message) }
 })
-router.delete('/facebook', (_req, res) => { removeToken('facebook'); removeToken('instagram'); res.json({ ok: true }) })
+router.delete('/facebook', requireAuth, (_req, res) => { removeToken('facebook'); removeToken('instagram'); res.json({ ok: true }) })
 
 // ── TikTok ──
-router.get('/tiktok', (req, res) => {
+router.get('/tiktok', requireAuth, (req, res) => {
   const state = crypto.randomBytes(16).toString('hex')
   req.session.ttState = state
   res.redirect(tiktok.getAuthUrl(state))
@@ -99,10 +100,10 @@ router.get('/tiktok/callback', async (req, res) => {
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.message || e.message) }
 })
-router.delete('/tiktok', (_req, res) => { removeToken('tiktok'); res.json({ ok: true }) })
+router.delete('/tiktok', requireAuth, (_req, res) => { removeToken('tiktok'); res.json({ ok: true }) })
 
 // ── YouTube (Google OAuth) ──
-router.get('/youtube', (req, res) => {
+router.get('/youtube', requireAuth, (req, res) => {
   const state = crypto.randomBytes(16).toString('hex')
   req.session.ytState = state
   res.redirect(youtube.getAuthUrl(state))
@@ -116,7 +117,7 @@ router.get('/youtube/callback', async (req, res) => {
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.error_description || e.message) }
 })
-router.delete('/youtube', (_req, res) => { removeToken('youtube'); res.json({ ok: true }) })
+router.delete('/youtube', requireAuth, (_req, res) => { removeToken('youtube'); res.json({ ok: true }) })
 
 // ── Facebook Data Deletion Callback ──
 // Required by Facebook for apps using Facebook Login.

@@ -47,8 +47,8 @@ app.use('/api/user', userRoutes)
 // initiation and status require login
 app.use('/auth', authRoutes)
 
-// Protected API routes
-app.use('/api', requireAuth, postRoutes)
+// API routes — individual write endpoints enforce auth via requireAuth middleware
+app.use('/api', postRoutes)
 app.use('/api/ai', requireAuth, aiRoutes)
 app.use('/api/live', requireAuth, liveRoutes)
 
