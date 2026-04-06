@@ -731,6 +731,11 @@
                 </button>
               </div>
 
+              <!-- Post Title -->
+              <input type="text" id="post-title" oninput="updatePreviewTitle(this.value)"
+                placeholder="Post title (required for YouTube)…"
+                class="w-full bg-surface-container-low rounded-xl px-4 py-2.5 text-sm text-on-surface placeholder:text-on-surface-variant/60 border-none transition-all mb-3"/>
+
               <textarea id="post-textarea" oninput="updateCharCount(this)" rows="6"
                 placeholder="What's on your mind? Start typing your post..."
                 class="w-full bg-surface-container-low rounded-xl px-4 py-3 text-sm text-on-surface placeholder:text-on-surface-variant/60 border-none resize-none min-h-[160px] focus:bg-surface-container-lowest transition-all"></textarea>
@@ -811,49 +816,222 @@
 
             <!-- Audience & Targeting -->
             <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
-              <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-3 block">Audience
-                &amp; Targeting</label>
+              <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-3 block">Audience &amp; Targeting</label>
               <div class="grid grid-cols-2 gap-3">
+
+                <!-- Age Range -->
                 <div>
                   <label class="text-xs text-on-surface-variant mb-1 block">Age Range</label>
-                  <select
-                    class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option value="">All Ages</option>
+                    <option>13 – 17</option>
                     <option>18 – 24</option>
                     <option selected>25 – 34</option>
                     <option>35 – 44</option>
-                    <option>45+</option>
+                    <option>45 – 54</option>
+                    <option>55 – 64</option>
+                    <option>65+</option>
                   </select>
                 </div>
+
+                <!-- Gender -->
+                <div>
+                  <label class="text-xs text-on-surface-variant mb-1 block">Gender</label>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option selected>All Genders</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Non-binary</option>
+                  </select>
+                </div>
+
+                <!-- Location -->
                 <div>
                   <label class="text-xs text-on-surface-variant mb-1 block">Location</label>
-                  <select
-                    class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
                     <option>Global</option>
                     <option selected>United States</option>
+                    <option>United Kingdom</option>
+                    <option>Canada</option>
+                    <option>Australia</option>
+                    <option>Germany</option>
+                    <option>France</option>
+                    <option>Spain</option>
+                    <option>Italy</option>
+                    <option>Netherlands</option>
+                    <option>Brazil</option>
+                    <option>Mexico</option>
+                    <option>India</option>
+                    <option>Japan</option>
+                    <option>South Korea</option>
+                    <option>China</option>
+                    <option>Singapore</option>
+                    <option>UAE</option>
+                    <option>South Africa</option>
                     <option>Europe</option>
+                    <option>Latin America</option>
+                    <option>Middle East</option>
                     <option>Asia Pacific</option>
+                    <option>Africa</option>
                   </select>
                 </div>
+
+                <!-- Language -->
                 <div>
-                  <label class="text-xs text-on-surface-variant mb-1 block">Interest</label>
-                  <select
-                    class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
-                    <option selected>Technology</option>
-                    <option>Design</option>
-                    <option>Business</option>
-                    <option>Marketing</option>
+                  <label class="text-xs text-on-surface-variant mb-1 block">Language</label>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option selected>English</option>
+                    <option>Spanish</option>
+                    <option>French</option>
+                    <option>German</option>
+                    <option>Portuguese</option>
+                    <option>Italian</option>
+                    <option>Dutch</option>
+                    <option>Arabic</option>
+                    <option>Hindi</option>
+                    <option>Japanese</option>
+                    <option>Korean</option>
+                    <option>Chinese (Simplified)</option>
+                    <option>Chinese (Traditional)</option>
+                    <option>Russian</option>
+                    <option>Turkish</option>
+                    <option>Polish</option>
+                    <option>Swedish</option>
+                    <option>Indonesian</option>
+                    <option>All Languages</option>
                   </select>
                 </div>
-                <div>
+
+                <!-- Interest (full width) -->
+                <div class="col-span-2">
+                  <label class="text-xs text-on-surface-variant mb-1 block">Interest / Topic</label>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option value="">All Interests</option>
+                    <optgroup label="Business &amp; Finance">
+                      <option>Business &amp; Entrepreneurship</option>
+                      <option>Finance &amp; Investing</option>
+                      <option selected>Marketing &amp; Advertising</option>
+                      <option>Leadership &amp; Management</option>
+                      <option>Startups &amp; Venture Capital</option>
+                      <option>Real Estate</option>
+                    </optgroup>
+                    <optgroup label="Technology">
+                      <option>Technology &amp; Innovation</option>
+                      <option>Artificial Intelligence</option>
+                      <option>Software &amp; Development</option>
+                      <option>Cybersecurity</option>
+                      <option>Blockchain &amp; Crypto</option>
+                      <option>Cloud Computing</option>
+                      <option>Data Science</option>
+                    </optgroup>
+                    <optgroup label="Creative">
+                      <option>Design &amp; UX</option>
+                      <option>Photography</option>
+                      <option>Video &amp; Film</option>
+                      <option>Music</option>
+                      <option>Art &amp; Illustration</option>
+                      <option>Writing &amp; Content</option>
+                    </optgroup>
+                    <optgroup label="Lifestyle">
+                      <option>Health &amp; Fitness</option>
+                      <option>Food &amp; Cooking</option>
+                      <option>Travel &amp; Adventure</option>
+                      <option>Fashion &amp; Beauty</option>
+                      <option>Home &amp; Interior</option>
+                      <option>Parenting &amp; Family</option>
+                      <option>Sports</option>
+                      <option>Gaming</option>
+                      <option>Education &amp; Learning</option>
+                      <option>Environment &amp; Sustainability</option>
+                    </optgroup>
+                    <optgroup label="Entertainment">
+                      <option>Entertainment &amp; Pop Culture</option>
+                      <option>News &amp; Current Affairs</option>
+                      <option>Science &amp; Nature</option>
+                      <option>Books &amp; Literature</option>
+                    </optgroup>
+                  </select>
+                </div>
+
+                <!-- Industry (full width) -->
+                <div class="col-span-2">
                   <label class="text-xs text-on-surface-variant mb-1 block">Industry</label>
-                  <select
-                    class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
-                    <option selected>SaaS / Software</option>
-                    <option>E-commerce</option>
-                    <option>Media</option>
-                    <option>Finance</option>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option value="">All Industries</option>
+                    <optgroup label="Technology">
+                      <option selected>SaaS / Software</option>
+                      <option>Artificial Intelligence</option>
+                      <option>Cybersecurity</option>
+                      <option>Hardware &amp; Electronics</option>
+                      <option>Telecom</option>
+                    </optgroup>
+                    <optgroup label="Commerce">
+                      <option>E-commerce &amp; Retail</option>
+                      <option>Consumer Goods</option>
+                      <option>Food &amp; Beverage</option>
+                      <option>Fashion &amp; Apparel</option>
+                      <option>Automotive</option>
+                    </optgroup>
+                    <optgroup label="Finance">
+                      <option>Banking &amp; Finance</option>
+                      <option>Insurance</option>
+                      <option>Fintech</option>
+                      <option>Real Estate</option>
+                      <option>Investment &amp; VC</option>
+                    </optgroup>
+                    <optgroup label="Health">
+                      <option>Healthcare &amp; Medical</option>
+                      <option>Pharmaceuticals</option>
+                      <option>Wellness &amp; Fitness</option>
+                      <option>Mental Health</option>
+                    </optgroup>
+                    <optgroup label="Services">
+                      <option>Marketing &amp; Advertising</option>
+                      <option>Consulting</option>
+                      <option>Legal Services</option>
+                      <option>HR &amp; Recruiting</option>
+                      <option>Education</option>
+                      <option>Non-profit</option>
+                    </optgroup>
+                    <optgroup label="Media &amp; Creative">
+                      <option>Media &amp; Publishing</option>
+                      <option>Entertainment</option>
+                      <option>Gaming</option>
+                      <option>Design &amp; Creative Agency</option>
+                    </optgroup>
+                    <optgroup label="Other">
+                      <option>Manufacturing</option>
+                      <option>Energy &amp; Utilities</option>
+                      <option>Transportation &amp; Logistics</option>
+                      <option>Travel &amp; Hospitality</option>
+                      <option>Government &amp; Public Sector</option>
+                    </optgroup>
                   </select>
                 </div>
+
+                <!-- Device -->
+                <div>
+                  <label class="text-xs text-on-surface-variant mb-1 block">Device</label>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option selected>All Devices</option>
+                    <option>Mobile</option>
+                    <option>Desktop</option>
+                    <option>Tablet</option>
+                  </select>
+                </div>
+
+                <!-- Relationship Status -->
+                <div>
+                  <label class="text-xs text-on-surface-variant mb-1 block">Relationship</label>
+                  <select class="w-full bg-surface-container-low rounded-xl px-3 py-2 text-sm text-on-surface border-none appearance-none">
+                    <option selected>Any</option>
+                    <option>Single</option>
+                    <option>In a Relationship</option>
+                    <option>Married</option>
+                    <option>Engaged</option>
+                  </select>
+                </div>
+
               </div>
             </div>
 
@@ -880,16 +1058,41 @@
 
             <!-- Live Preview -->
             <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
-              <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center justify-between mb-3">
                 <h3 class="font-bold text-xs uppercase tracking-widest" style="color:#00e5cc">Live Preview</h3>
-                <div class="flex gap-1">
-                  <button onclick="setPreview('x')" data-preview="x"
-                    class="preview-tab active text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant">X</button>
-                  <button onclick="setPreview('linkedin')" data-preview="linkedin"
-                    class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant">LinkedIn</button>
-                  <button onclick="setPreview('instagram')" data-preview="instagram"
-                    class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant">Instagram</button>
-                </div>
+              </div>
+              <!-- Scrollable tab row -->
+              <div class="flex gap-1 mb-4 overflow-x-auto pb-1 scrollbar-thin" style="scrollbar-width:none">
+                <button onclick="setPreview('x')" data-preview="x"
+                  class="preview-tab active text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                  X
+                </button>
+                <button onclick="setPreview('linkedin')" data-preview="linkedin"
+                  class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                  Li
+                </button>
+                <button onclick="setPreview('instagram')" data-preview="instagram"
+                  class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                  IG
+                </button>
+                <button onclick="setPreview('facebook')" data-preview="facebook"
+                  class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  FB
+                </button>
+                <button onclick="setPreview('tiktok')" data-preview="tiktok"
+                  class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+                  TT
+                </button>
+                <button onclick="setPreview('youtube')" data-preview="youtube"
+                  class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant shrink-0 flex items-center gap-1">
+                  <svg class="w-3 h-3 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                  YT
+                </button>
               </div>
 
               <!-- X Preview -->
@@ -999,6 +1202,105 @@
                     <p class="text-xs text-on-surface leading-relaxed"><span id="preview-ig-username-caption"
                         class="font-bold">your_instagram</span> <span id="preview-ig-text">Your post will appear here as
                         you type...</span></p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Facebook Preview -->
+              <div id="preview-facebook" class="preview-content hidden">
+                <div class="bg-surface-container-low rounded-xl p-4">
+                  <div class="flex items-start gap-2.5 mb-3">
+                    <div class="w-9 h-9 rounded-full flex items-center justify-center shrink-0" style="background:#1877f2">
+                      <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                    </div>
+                    <div>
+                      <p id="preview-fb-name" class="text-sm font-bold text-on-surface">Your Facebook Page</p>
+                      <p class="text-[11px] text-on-surface-variant">Just now · <span style="color:#1877f2">🌐</span></p>
+                    </div>
+                    <span class="ml-auto material-symbols-outlined text-on-surface-variant" style="font-size:18px">more_horiz</span>
+                  </div>
+                  <p id="preview-fb-text" class="text-sm text-on-surface leading-relaxed mb-3 whitespace-pre-wrap">Your post will appear here as you type...</p>
+                  <div id="preview-fb-img" class="hidden mb-3">
+                    <img id="preview-fb-img-src" class="w-full rounded-lg object-cover max-h-48" src="" alt="Media preview"/>
+                  </div>
+                  <div class="border-t border-outline-variant/20 pt-3 flex items-center gap-1 text-xs text-on-surface-variant">
+                    <button class="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                      <span class="material-symbols-outlined" style="font-size:16px">thumb_up</span> Like
+                    </button>
+                    <button class="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                      <span class="material-symbols-outlined" style="font-size:16px">chat_bubble</span> Comment
+                    </button>
+                    <button class="flex-1 flex items-center justify-center gap-1 py-1.5 rounded-lg hover:bg-surface-container transition-colors">
+                      <span class="material-symbols-outlined" style="font-size:16px">share</span> Share
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TikTok Preview -->
+              <div id="preview-tiktok" class="preview-content hidden">
+                <div class="rounded-xl overflow-hidden" style="background:#010101">
+                  <!-- Video placeholder -->
+                  <div id="preview-tt-video" class="w-full h-44 flex items-center justify-center relative" style="background:#111">
+                    <div id="preview-tt-img-wrap" class="hidden absolute inset-0">
+                      <img id="preview-tt-img-src" class="w-full h-full object-cover" src="" alt="Media preview"/>
+                    </div>
+                    <div id="preview-tt-placeholder" class="flex flex-col items-center gap-2 text-white/40">
+                      <span class="material-symbols-outlined" style="font-size:36px">play_circle</span>
+                      <span class="text-xs">Video preview</span>
+                    </div>
+                  </div>
+                  <div class="p-3">
+                    <div class="flex items-end gap-3">
+                      <div class="flex-1">
+                        <p id="preview-tt-username" class="text-xs font-bold text-white mb-1">@your_tiktok</p>
+                        <p id="preview-tt-text" class="text-xs text-white/80 leading-relaxed whitespace-pre-wrap">Your caption will appear here as you type...</p>
+                      </div>
+                      <!-- TikTok right actions -->
+                      <div class="flex flex-col items-center gap-3 text-white/80 text-[10px]">
+                        <div class="flex flex-col items-center gap-0.5">
+                          <span class="material-symbols-outlined" style="font-size:22px">favorite</span>
+                          <span>0</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-0.5">
+                          <span class="material-symbols-outlined" style="font-size:22px">chat_bubble</span>
+                          <span>0</span>
+                        </div>
+                        <div class="flex flex-col items-center gap-0.5">
+                          <span class="material-symbols-outlined" style="font-size:22px">share</span>
+                          <span>0</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- YouTube Preview -->
+              <div id="preview-youtube" class="preview-content hidden">
+                <div class="bg-surface-container-low rounded-xl overflow-hidden">
+                  <!-- Thumbnail area -->
+                  <div class="w-full h-40 flex items-center justify-center relative" style="background:#111">
+                    <div id="preview-yt-img-wrap" class="hidden absolute inset-0">
+                      <img id="preview-yt-img-src" class="w-full h-full object-cover" src="" alt="Thumbnail"/>
+                    </div>
+                    <div id="preview-yt-placeholder" class="flex flex-col items-center gap-2 text-white/40">
+                      <svg class="w-10 h-10" viewBox="0 0 24 24" fill="#ff0000"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      <span class="text-xs text-white/50">Video thumbnail</span>
+                    </div>
+                  </div>
+                  <div class="p-3">
+                    <p id="preview-yt-title" class="text-sm font-bold text-on-surface mb-1 leading-snug">Your video title will appear here…</p>
+                    <div class="flex items-center gap-2 mb-2">
+                      <div class="w-6 h-6 rounded-full flex items-center justify-center shrink-0" style="background:#ff0000">
+                        <svg class="w-3 h-3 fill-white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                      </div>
+                      <div>
+                        <p id="preview-yt-channel" class="text-xs font-semibold text-on-surface">Your Channel</p>
+                        <p class="text-[10px] text-on-surface-variant">Just now · 0 views</p>
+                      </div>
+                    </div>
+                    <p id="preview-yt-desc" class="text-xs text-on-surface-variant leading-relaxed line-clamp-2 whitespace-pre-wrap">Description will appear here as you type...</p>
                   </div>
                 </div>
               </div>
@@ -1580,12 +1882,22 @@
         el.classList.toggle('text-error', len > 280);
       }
       var displayText = textarea.value || 'Your post will appear here as you type...';
-      var ids = ['preview-x-text', 'preview-linkedin-text', 'preview-ig-text'];
+      var ids = ['preview-x-text', 'preview-linkedin-text', 'preview-ig-text',
+                 'preview-fb-text', 'preview-tt-text', 'preview-yt-desc'];
       ids.forEach(function (id) {
         var node = document.getElementById(id);
         if (node) node.textContent = displayText;
       });
+      // TikTok caption mirrors body text
+      var ttText = document.getElementById('preview-tt-text');
+      if (ttText) ttText.textContent = textarea.value || 'Your caption will appear here as you type...';
       updateScore(textarea.value);
+    }
+
+    // Sync post title to YouTube preview and caption
+    function updatePreviewTitle(value) {
+      var ytTitle = document.getElementById('preview-yt-title');
+      if (ytTitle) ytTitle.textContent = value || 'Your video title will appear here…';
     }
 
     // Post score calculation
@@ -1747,24 +2059,40 @@
         thumb.appendChild(removeBtn);
         container.appendChild(thumb);
 
-        // Update live previews with image
+        // Update live previews with image/video
         if (file.type.startsWith('image/')) {
           ['x', 'linkedin'].forEach(function (p) {
             var imgEl = document.getElementById('preview-' + p + '-img');
             var imgSrc = document.getElementById('preview-' + p + '-img-src');
-            if (imgEl && imgSrc) {
-              imgSrc.src = url;
-              imgEl.classList.remove('hidden');
-            }
+            if (imgEl && imgSrc) { imgSrc.src = url; imgEl.classList.remove('hidden'); }
           });
           var igImg = document.getElementById('preview-ig-img');
           var igSrc = document.getElementById('preview-ig-img-src');
           var igPh = document.getElementById('preview-ig-placeholder');
-          if (igImg && igSrc) {
-            igSrc.src = url;
-            igImg.classList.remove('hidden');
-          }
+          if (igImg && igSrc) { igSrc.src = url; igImg.classList.remove('hidden'); }
           if (igPh) igPh.classList.add('hidden');
+          // Facebook image preview
+          var fbImg = document.getElementById('preview-fb-img');
+          var fbSrc = document.getElementById('preview-fb-img-src');
+          if (fbImg && fbSrc) { fbSrc.src = url; fbImg.classList.remove('hidden'); }
+          // YouTube thumbnail
+          var ytWrap = document.getElementById('preview-yt-img-wrap');
+          var ytSrc = document.getElementById('preview-yt-img-src');
+          var ytPh = document.getElementById('preview-yt-placeholder');
+          if (ytWrap && ytSrc) { ytSrc.src = url; ytWrap.classList.remove('hidden'); }
+          if (ytPh) ytPh.classList.add('hidden');
+        } else if (file.type.startsWith('video/')) {
+          // TikTok and YouTube show video
+          var ttWrap = document.getElementById('preview-tt-img-wrap');
+          var ttSrc = document.getElementById('preview-tt-img-src');
+          var ttPh = document.getElementById('preview-tt-placeholder');
+          if (ttWrap && ttSrc) { ttSrc.src = url; ttWrap.classList.remove('hidden'); }
+          if (ttPh) ttPh.classList.add('hidden');
+          var ytWrap2 = document.getElementById('preview-yt-img-wrap');
+          var ytSrc2 = document.getElementById('preview-yt-img-src');
+          var ytPh2 = document.getElementById('preview-yt-placeholder');
+          if (ytWrap2 && ytSrc2) { ytSrc2.src = url; ytWrap2.classList.remove('hidden'); }
+          if (ytPh2) ytPh2.classList.add('hidden');
         }
       });
     }
@@ -1774,10 +2102,17 @@
         var imgEl = document.getElementById('preview-' + p + '-img');
         if (imgEl) imgEl.classList.add('hidden');
       });
-      var igImg = document.getElementById('preview-ig-img');
+      ['preview-ig-img','preview-fb-img'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.classList.add('hidden');
+      });
       var igPh = document.getElementById('preview-ig-placeholder');
-      if (igImg) igImg.classList.add('hidden');
       if (igPh) igPh.classList.remove('hidden');
+      ['preview-yt-img-wrap','preview-tt-img-wrap'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.classList.add('hidden');
+      });
+      ['preview-yt-placeholder','preview-tt-placeholder'].forEach(function(id) {
+        var el = document.getElementById(id); if (el) el.classList.remove('hidden');
+      });
     }
 
     // Hashtag suggestions
@@ -1878,6 +2213,10 @@
         const fd = new FormData()
         fd.append('text', text)
         fd.append('platforms', JSON.stringify([...activePlatforms]))
+        const titleInput = document.getElementById('post-title')
+        const campaignInput = document.getElementById('campaign-name')
+        const titleVal = (titleInput && titleInput.value.trim()) || (campaignInput && campaignInput.value.trim()) || ''
+        if (titleVal) fd.append('campaignName', titleVal)
         const fileInput = document.getElementById('file-input')
         if (fileInput.files[0]) fd.append('media', fileInput.files[0])
 
@@ -2850,9 +3189,21 @@
         var igHandle = igName.toLowerCase().replace(/\s+/g, '_');
         var igUser = document.getElementById('preview-ig-username');
         var igUserCap = document.getElementById('preview-ig-username-caption');
-        var igAvatar = document.querySelector('#preview-instagram .ig-gradient + div div, #preview-instagram .w-8');
         if (igUser) igUser.textContent = igHandle;
         if (igUserCap) igUserCap.textContent = igHandle;
+      }
+
+      // Facebook preview
+      if (fb.pageName) {
+        var fbName = document.getElementById('preview-fb-name');
+        if (fbName) fbName.textContent = fb.pageName;
+      }
+
+      // YouTube preview
+      var yt = status.youtube || {};
+      if (yt.channelTitle) {
+        var ytCh = document.getElementById('preview-yt-channel');
+        if (ytCh) ytCh.textContent = yt.channelTitle;
       }
     }
 
