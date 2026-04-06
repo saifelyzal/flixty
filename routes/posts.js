@@ -40,9 +40,14 @@ router.post('/publish', upload.single('media'), async (req, res) => {
       if (platform === 'x')        results.x        = await twitter.postTweet(tok.access_token, text)
       if (platform === 'linkedin') results.linkedin = await linkedin.postUpdate(tok.access_token, tok.personId, text)
       if (platform === 'facebook') {
-        results.facebook = mediaUrl
-          ? await facebook.postPhotoToPage(tok.pageToken, tok.pageId, text, mediaUrl)
-          : await facebook.postToPage(tok.pageToken, tok.pageId, text)
+        const isVideo = req.file && req.file.mimetype.startsWith('video/')
+        if (isVideo) {
+          results.facebook = await facebook.postVideoToPage(tok.pageToken, tok.pageId, text, req.file.path)
+        } else if (mediaUrl) {
+          results.facebook = await facebook.postPhotoToPage(tok.pageToken, tok.pageId, text, mediaUrl)
+        } else {
+          results.facebook = await facebook.postToPage(tok.pageToken, tok.pageId, text)
+        }
       }
       if (platform === 'instagram') {
         if (!mediaUrl) { errors.instagram = 'Instagram requires an image URL'; return }

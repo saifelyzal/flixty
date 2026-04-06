@@ -1,4 +1,6 @@
 import axios from 'axios'
+import fs from 'fs'
+import FormData from 'form-data'
 
 const APP_ID = process.env.FB_APP_ID
 const APP_SECRET = process.env.FB_APP_SECRET
@@ -60,6 +62,25 @@ export async function postPhotoToPage(pageToken, pageId, message, imageUrl) {
     return data
   } catch (e) {
     console.error('[facebook] postPhotoToPage error:', JSON.stringify(e.response?.data))
+    throw e
+  }
+}
+
+export async function postVideoToPage(pageToken, pageId, message, filePath) {
+  console.log('[facebook] postVideoToPage pageId=%s filePath=%s', pageId, filePath)
+  try {
+    const form = new FormData()
+    form.append('access_token', pageToken)
+    form.append('description', message)
+    form.append('source', fs.createReadStream(filePath))
+    const { data } = await axios.post(
+      `https://graph.facebook.com/v19.0/${pageId}/videos`,
+      form,
+      { headers: form.getHeaders(), maxBodyLength: Infinity }
+    )
+    return data
+  } catch (e) {
+    console.error('[facebook] postVideoToPage error:', JSON.stringify(e.response?.data))
     throw e
   }
 }

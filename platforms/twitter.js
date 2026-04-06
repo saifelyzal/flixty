@@ -41,6 +41,14 @@ export async function refreshAccessToken(token) {
   return data
 }
 
+export async function getUser(accessToken) {
+  const { data } = await axios.get(
+    'https://api.twitter.com/2/users/me?user.fields=name,username',
+    { headers: { Authorization: `Bearer ${accessToken}` } }
+  )
+  return data.data // { id, name, username }
+}
+
 export async function postTweet(accessToken, text) {
   const { data } = await axios.post(
     'https://api.twitter.com/2/tweets',

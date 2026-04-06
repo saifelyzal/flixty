@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 <head>
 <meta charset="utf-8"/>
 <link rel="icon" type="image/png" href="/LFITX.png"/>
@@ -52,46 +52,48 @@
 </script>
 <style>
   :root {
-    --surface: #f6f6fb;
-    --surface-bright: #f6f6fb;
-    --surface-container-low: #f0f0f6;
-    --surface-container: #e7e8ee;
-    --surface-container-high: #e1e2e8;
-    --surface-container-highest: #dbdde3;
-    --surface-container-lowest: #ffffff;
-    --on-surface: #2d2f33;
-    --on-surface-variant: #5a5b60;
-    --secondary: #4c49c9;
-    --secondary-dim: #3f3bbd;
-    --secondary-container: #cfcdff;
-    --on-secondary: #f4f1ff;
-    --on-secondary-container: #3631b5;
-    --outline-variant: #acadb1;
-    --outline: #75777b;
-    --error: #b31b25;
-    --background: #f6f6fb;
-    --on-background: #2d2f33;
+    --surface: #0e1016;
+    --surface-bright: #181b22;
+    --surface-container-low: #11131a;
+    --surface-container: #14171f;
+    --surface-container-high: #1c2028;
+    --surface-container-highest: #222630;
+    --surface-container-lowest: #0d1018;
+    --on-surface: #e0e8f4;
+    --on-surface-variant: #5c6890;
+    --secondary: #b2ff4d;
+    --secondary-dim: #8fce3a;
+    --secondary-container: #162008;
+    --on-secondary: #081000;
+    --on-secondary-container: #b2ff4d;
+    --outline-variant: #1c2235;
+    --outline: #2a3050;
+    --error: #ff4d6d;
+    --background: #060709;
+    --on-background: #e0e8f4;
+    --teal: #00e5cc;
   }
   .dark {
-    --surface: #0c0e12;
-    --surface-bright: #37393e;
-    --surface-container-low: #1a1c22;
-    --surface-container: #1e2025;
-    --surface-container-high: #282a2f;
-    --surface-container-highest: #33353a;
-    --surface-container-lowest: #0c0e12;
-    --on-surface: #e2e2e6;
-    --on-surface-variant: #c4c6cf;
-    --secondary: #bfbeff;
-    --secondary-dim: #bfbeff;
-    --secondary-container: #3631b5;
-    --on-secondary: #2014a2;
-    --on-secondary-container: #cfcdff;
-    --outline-variant: #44474e;
-    --outline: #8e9199;
-    --error: #fb5151;
-    --background: #0c0e12;
-    --on-background: #e2e2e6;
+    --surface: #0e1016;
+    --surface-bright: #181b22;
+    --surface-container-low: #11131a;
+    --surface-container: #14171f;
+    --surface-container-high: #1c2028;
+    --surface-container-highest: #222630;
+    --surface-container-lowest: #0d1018;
+    --on-surface: #e0e8f4;
+    --on-surface-variant: #5c6890;
+    --secondary: #b2ff4d;
+    --secondary-dim: #8fce3a;
+    --secondary-container: #162008;
+    --on-secondary: #081000;
+    --on-secondary-container: #b2ff4d;
+    --outline-variant: #1c2235;
+    --outline: #2a3050;
+    --error: #ff4d6d;
+    --background: #060709;
+    --on-background: #e0e8f4;
+    --teal: #00e5cc;
   }
 
   body { font-family: 'Inter', sans-serif; }
@@ -106,12 +108,9 @@
   ::-webkit-scrollbar-thumb { background: var(--outline-variant); border-radius: 3px; }
 
   .btn-primary {
-    background: linear-gradient(135deg, #4c49c9, #3f3bbd);
-    color: #f4f1ff;
-  }
-  .dark .btn-primary {
-    background: linear-gradient(135deg, #bfbeff, #a8a7f5);
-    color: #2014a2;
+    background: linear-gradient(135deg, #b2ff4d, #8fce3a);
+    color: #0a1400;
+    font-weight: 700;
   }
 
   .ig-gradient {
@@ -134,6 +133,7 @@
   .platform-chip.active-instagram { background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff; }
   .platform-chip.active-tiktok    { background: #010101; color: #fff; }
   .dark .platform-chip.active-tiktok { background: #fff; color: #010101; }
+  .platform-chip.active-youtube   { background: #ff0000; color: #fff; }
 
   .htag-chip.added {
     background: var(--secondary);
@@ -144,16 +144,31 @@
   .cal-day:hover .cal-day-num { background: var(--secondary-container); color: var(--on-secondary-container); border-radius: 50%; }
 
   .score-bar-track {
-    background: var(--surface-container-high);
+    background: rgba(0,229,204,0.1);
     border-radius: 9999px;
-    overflow: hidden;
-    height: 6px;
+    overflow: visible;
+    height: 3px;
+    position: relative;
   }
   .score-bar-fill {
-    height: 6px;
+    height: 3px;
     border-radius: 9999px;
-    background: linear-gradient(90deg, var(--secondary), var(--secondary-dim));
+    background: linear-gradient(90deg, #00e5cc, #b2ff4d);
     transition: width 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    min-width: 8px;
+  }
+  .score-bar-fill::after {
+    content: '';
+    position: absolute;
+    right: -3px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #b2ff4d;
+    box-shadow: 0 0 6px #b2ff4d;
   }
 
   #schedule-modal { transition: opacity 0.2s ease; }
@@ -168,8 +183,8 @@
   }
 
   .sidebar-link.active {
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
+    background: rgba(79, 70, 229, 0.22);
+    color: #e2e8f8;
   }
   .sidebar-link:not(.active):hover {
     background: var(--surface-container);
@@ -177,17 +192,14 @@
   }
 
   .header-tab.active {
-    background: rgba(79, 70, 201, 0.15);
-    color: var(--secondary);
-  }
-  .dark .header-tab.active {
-    background: rgba(191, 190, 255, 0.15);
-    color: var(--secondary);
+    background: rgba(178, 255, 77, 0.12);
+    color: #b2ff4d;
   }
 
   .preview-tab.active {
-    background: var(--secondary-container);
-    color: var(--on-secondary-container);
+    background: rgba(0,229,204,0.12);
+    color: #00e5cc;
+    border: 1px solid rgba(0,229,204,0.3);
   }
 
   .range-chip.active {
@@ -197,10 +209,13 @@
 
   input:focus, textarea:focus, select:focus {
     outline: none;
-    box-shadow: 0 0 0 2px rgba(76, 73, 201, 0.25);
+    box-shadow: 0 0 0 2px rgba(178, 255, 77, 0.25);
   }
-  .dark input:focus, .dark textarea:focus, .dark select:focus {
-    box-shadow: 0 0 0 2px rgba(191, 190, 255, 0.25);
+
+  /* Teal glow card borders */
+  .bg-surface-container-lowest {
+    border: 1px solid rgba(0,229,204,0.30);
+    box-shadow: 0 0 24px rgba(0,229,204,0.10), inset 0 0 0 0.5px rgba(0,229,204,0.08);
   }
 
   .analytics-bar {
@@ -222,7 +237,7 @@
 
   #upload-zone.drag-over {
     border-color: var(--secondary);
-    background: rgba(76, 73, 201, 0.05);
+    background: rgba(178, 255, 77, 0.05);
   }
 
   @media (min-width: 1024px) {
@@ -233,7 +248,7 @@
 <body class="bg-background text-on-background selection:bg-secondary-container selection:text-on-secondary-container transition-colors duration-300">
 
 <!-- FIXED HEADER -->
-<header class="fixed top-0 w-full z-50 bg-white/80 dark:bg-[#0c0e12]/80 backdrop-blur-xl border-b border-outline-variant/20">
+<header class="fixed top-0 w-full z-50 bg-[#0a0a0e]/90 backdrop-blur-xl border-b border-outline-variant/30">
   <div class="flex items-center h-16 px-4 lg:px-6 gap-4 max-w-screen-2xl mx-auto">
 
     <div class="flex items-center gap-3 shrink-0">
@@ -260,7 +275,7 @@
       <button onclick="toggleDark()" class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-surface-container-low transition-colors" title="Toggle dark mode">
         <span id="dark-icon" class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">dark_mode</span>
       </button>
-      <div class="w-8 h-8 rounded-xl bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">JM</div>
+      <div class="w-8 h-8 rounded-full bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">JN</div>
     </div>
   </div>
 </header>
@@ -272,14 +287,7 @@
   <aside class="hidden lg:flex flex-col h-screen w-60 fixed left-0 top-0 pt-16 bg-surface-container-low z-40">
     <div class="flex flex-col flex-1 p-4 gap-1 overflow-y-auto">
 
-      <div class="px-2 py-4 mb-2">
-        <div class="flex items-center gap-3">
-          <img src="/LFITX.png" alt="LFITX" class="h-8 w-auto object-contain"/>
-          <p class="text-xs text-on-surface-variant">Marketing Studio</p>
-        </div>
-      </div>
-
-      <nav class="flex flex-col gap-0.5">
+      <nav class="flex flex-col gap-0.5 mt-2">
         <button onclick="switchView('dashboard')" data-sidebar="dashboard" class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 w-full text-left">
           <span class="material-symbols-outlined" style="font-size:20px">grid_view</span>
           <span>Dashboard</span>
@@ -348,7 +356,7 @@
     </div>
 
     <div class="p-4">
-      <button onclick="switchView('compose')" class="btn-primary w-full py-2.5 rounded-xl font-semibold text-sm flex items-center justify-center gap-2 shadow-lg transition-all active:scale-95">
+      <button onclick="switchView('compose')" class="btn-primary w-full py-2.5 rounded-full font-bold text-sm flex items-center justify-center gap-1.5 transition-all active:scale-95" style="box-shadow:0 0 16px rgba(178,255,77,0.25)">
         <span class="material-symbols-outlined" style="font-size:18px">add</span>
         New Post
       </button>
@@ -362,8 +370,8 @@
     <div id="view-dashboard" class="p-5 lg:p-8 max-w-7xl mx-auto">
 
       <div class="mb-8">
-        <h1 class="text-2xl font-black text-on-surface tracking-tight">Good morning, Jamie 👋</h1>
-        <p class="text-on-surface-variant text-sm mt-1">Saturday, April 4, 2026 — Here's your content overview</p>
+        <h1 id="dash-greeting" class="text-2xl font-black text-on-surface tracking-tight"></h1>
+        <p id="dash-date" class="text-on-surface-variant text-sm mt-1"></p>
       </div>
 
       <!-- Stats grid -->
@@ -373,20 +381,18 @@
             <div class="w-9 h-9 rounded-xl bg-secondary-container flex items-center justify-center">
               <span class="material-symbols-outlined text-on-secondary-container" style="font-size:18px">bar_chart</span>
             </div>
-            <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+18.2%</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">124.5k</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Total Reach</p>
+          <p id="stat-total-posts" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">Total Posts</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
             <div class="w-9 h-9 rounded-xl bg-secondary-container flex items-center justify-center">
-              <span class="material-symbols-outlined text-on-secondary-container" style="font-size:18px">favorite</span>
+              <span class="material-symbols-outlined text-on-secondary-container" style="font-size:18px">hub</span>
             </div>
-            <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+2.1%</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">8.7%</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Engagement Rate</p>
+          <p id="stat-platforms" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">Platforms Active</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
@@ -395,18 +401,17 @@
             </div>
             <span class="text-xs font-semibold text-on-surface-variant bg-surface-container px-2 py-0.5 rounded-full">Queued</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">12</p>
+          <p id="stat-scheduled" class="text-2xl font-black text-on-surface tracking-tight">—</p>
           <p class="text-xs text-on-surface-variant mt-0.5">Scheduled Posts</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
             <div class="w-9 h-9 rounded-xl bg-secondary-container flex items-center justify-center">
-              <span class="material-symbols-outlined text-on-secondary-container" style="font-size:18px">conversion_path</span>
+              <span class="material-symbols-outlined text-on-secondary-container" style="font-size:18px">today</span>
             </div>
-            <span class="text-xs font-semibold text-error bg-red-100 dark:bg-red-900/30 px-2 py-0.5 rounded-full">-0.8%</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">3.2k</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Conversions</p>
+          <p id="stat-this-week" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">This Week</p>
         </div>
       </div>
 
@@ -419,89 +424,7 @@
             <h2 class="font-bold text-on-surface">Recent Posts</h2>
             <button class="text-xs text-secondary font-medium hover:underline">View all</button>
           </div>
-          <div class="flex flex-col gap-3">
-
-            <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm shadow-on-surface/5">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 ig-gradient rounded-xl flex items-center justify-center shrink-0">
-                  <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2 mb-1">
-                    <p class="font-semibold text-sm text-on-surface truncate">Behind the scenes: Our team at work</p>
-                    <span class="text-xs text-on-surface-variant shrink-0">2h ago</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant line-clamp-2 mb-2">Sharing a glimpse into our creative process. The magic happens when great minds collaborate... ✨ #teamwork #creativity</p>
-                  <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">favorite</span> 2.4k</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">chat_bubble</span> 187</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">share</span> 342</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm shadow-on-surface/5">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl flex items-center justify-center shrink-0" style="background:#0a66c2">
-                  <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2 mb-1">
-                    <p class="font-semibold text-sm text-on-surface truncate">5 Lessons from Scaling to 100k Users</p>
-                    <span class="text-xs text-on-surface-variant shrink-0">1d ago</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant line-clamp-2 mb-2">What nobody tells you about growth: the real challenge isn't acquiring users, it's retaining them. Here's what we learned...</p>
-                  <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">thumb_up</span> 1.8k</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">chat_bubble</span> 94</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">share</span> 276</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm shadow-on-surface/5">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-black dark:bg-white flex items-center justify-center shrink-0">
-                  <svg class="w-4 h-4 fill-white dark:fill-black" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2 mb-1">
-                    <p class="font-semibold text-sm text-on-surface truncate">Hot take: Dark mode isn't about eyes</p>
-                    <span class="text-xs text-on-surface-variant shrink-0">2d ago</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant line-clamp-2 mb-2">Hot take: dark mode isn't just about eye strain. It's a UX signal that says "we care about the details." Your users notice. 🌙</p>
-                  <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">favorite</span> 847</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">chat_bubble</span> 63</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">repeat</span> 412</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-surface-container-lowest rounded-xl p-4 shadow-sm shadow-on-surface/5">
-              <div class="flex items-start gap-3">
-                <div class="w-8 h-8 rounded-xl bg-[#010101] flex items-center justify-center shrink-0">
-                  <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                </div>
-                <div class="flex-1 min-w-0">
-                  <div class="flex items-center justify-between gap-2 mb-1">
-                    <p class="font-semibold text-sm text-on-surface truncate">Day in the life: design process POV</p>
-                    <span class="text-xs text-on-surface-variant shrink-0">3d ago</span>
-                  </div>
-                  <p class="text-xs text-on-surface-variant line-clamp-2 mb-2">A full day of designing captured in 60 seconds. From wireframes to launch — this is how it really happens 🎬 #designtok #uxdesign</p>
-                  <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">favorite</span> 14.2k</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">chat_bubble</span> 328</span>
-                    <span class="flex items-center gap-1"><span class="material-symbols-outlined" style="font-size:14px">share</span> 2.1k</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
+          <div id="recent-posts-list"></div>
         </div>
 
         <!-- Right column -->
@@ -513,29 +436,7 @@
               <h3 class="font-bold text-on-surface text-sm">Upcoming</h3>
               <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px">calendar_month</span>
             </div>
-            <div class="flex flex-col gap-3">
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full shrink-0" style="background:#0a66c2"></div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-xs font-semibold text-on-surface truncate">LinkedIn Article — Growth Hacks</p>
-                  <p class="text-[11px] text-on-surface-variant">Today • 3:00 PM</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full shrink-0" style="background:linear-gradient(45deg,#f09433,#bc1888)"></div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-xs font-semibold text-on-surface truncate">Instagram Reel — Product Demo</p>
-                  <p class="text-[11px] text-on-surface-variant">Tomorrow • 10:00 AM</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full shrink-0 bg-black dark:bg-white"></div>
-                <div class="flex-1 min-w-0">
-                  <p class="text-xs font-semibold text-on-surface truncate">X Thread — Industry Insights</p>
-                  <p class="text-[11px] text-on-surface-variant">Apr 6 • 9:00 AM</p>
-                </div>
-              </div>
-            </div>
+            <div id="upcoming-list"></div>
           </div>
 
           <!-- Best Performer -->
@@ -543,8 +444,8 @@
             <div class="absolute top-0 right-0 w-24 h-24 rounded-full opacity-20" style="background:rgba(255,255,255,0.3);transform:translate(30%,-30%)"></div>
             <div class="absolute bottom-0 left-0 w-16 h-16 rounded-full opacity-15" style="background:rgba(255,255,255,0.2);transform:translate(-30%,30%)"></div>
             <p class="text-xs font-semibold text-white/70 uppercase tracking-widest mb-1 relative">Best Performer</p>
-            <p class="text-sm font-bold text-white relative mb-1">Day in the life: design process POV</p>
-            <p class="text-xs text-white/70 relative mb-3">TikTok • 14.2k likes • 3d ago</p>
+            <p id="best-performer-text" class="text-sm font-bold text-white relative mb-1">—</p>
+            <p id="best-performer-meta" class="text-xs text-white/70 relative mb-3">—</p>
             <button class="relative text-xs font-semibold bg-white/20 hover:bg-white/30 text-white px-3 py-1.5 rounded-xl transition-all flex items-center gap-1.5">
               <span class="material-symbols-outlined" style="font-size:14px">recycling</span>
               Repurpose
@@ -555,38 +456,9 @@
           <div class="bg-surface-container-low/50 backdrop-blur-md rounded-xl p-5 shadow-sm shadow-on-surface/5">
             <div class="flex items-center justify-between mb-4">
               <h3 class="font-bold text-on-surface text-sm">Top Hashtags</h3>
-              <span class="text-xs text-on-surface-variant">This week</span>
+              <span class="text-xs text-on-surface-variant">All posts</span>
             </div>
-            <div class="flex flex-col gap-3">
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface font-medium">#marketing</span>
-                  <span class="text-on-surface-variant">82%</span>
-                </div>
-                <div class="score-bar-track"><div class="score-bar-fill" style="width:82%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface font-medium">#branding</span>
-                  <span class="text-on-surface-variant">74%</span>
-                </div>
-                <div class="score-bar-track"><div class="score-bar-fill" style="width:74%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface font-medium">#contentcreator</span>
-                  <span class="text-on-surface-variant">61%</span>
-                </div>
-                <div class="score-bar-track"><div class="score-bar-fill" style="width:61%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface font-medium">#socialmedia</span>
-                  <span class="text-on-surface-variant">48%</span>
-                </div>
-                <div class="score-bar-track"><div class="score-bar-fill" style="width:48%"></div></div>
-              </div>
-            </div>
+            <div id="top-hashtags-list" class="flex flex-col gap-3"></div>
           </div>
 
         </div>
@@ -601,9 +473,9 @@
           <h1 class="text-2xl font-black text-on-surface tracking-tight">Compose</h1>
           <p class="text-on-surface-variant text-sm mt-1">Create and schedule your next post</p>
         </div>
-        <button onclick="openAiPanel()" class="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold btn-primary shadow-lg transition-all active:scale-95 shrink-0">
+        <button onclick="openAiPanel()" class="flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold btn-primary transition-all active:scale-95 shrink-0 tracking-wide uppercase" style="letter-spacing:0.06em;box-shadow:0 0 20px rgba(178,255,77,0.3),0 0 0 1px rgba(0,229,204,0.4)">
           <span class="material-symbols-outlined" style="font-size:16px">auto_awesome</span>
-          AI Assist
+          Optimize with AI Assist
         </button>
       </div>
 
@@ -622,27 +494,27 @@
           <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
             <label class="text-xs font-semibold text-on-surface-variant uppercase tracking-wider mb-3 block">Platforms</label>
             <div class="flex flex-wrap gap-2">
-              <button onclick="togglePlatform(this,'x')" data-platform="x" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high">
+              <button onclick="togglePlatform(this,'x')" data-platform="x" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
                 X
               </button>
-              <button onclick="togglePlatform(this,'linkedin')" data-platform="linkedin" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high">
+              <button onclick="togglePlatform(this,'linkedin')" data-platform="linkedin" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
                 LinkedIn
               </button>
-              <button onclick="togglePlatform(this,'facebook')" data-platform="facebook" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high">
+              <button onclick="togglePlatform(this,'facebook')" data-platform="facebook" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
                 Facebook
               </button>
-              <button onclick="togglePlatform(this,'instagram')" data-platform="instagram" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high">
+              <button onclick="togglePlatform(this,'instagram')" data-platform="instagram" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
                 Instagram
               </button>
-              <button onclick="togglePlatform(this,'tiktok')" data-platform="tiktok" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high">
+              <button onclick="togglePlatform(this,'tiktok')" data-platform="tiktok" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
                 TikTok
               </button>
-              <button onclick="togglePlatform(this,'youtube')" data-platform="youtube" class="platform-chip flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold bg-surface-container text-on-surface-variant transition-all hover:bg-surface-container-high" title="Requires a video file">
+              <button onclick="togglePlatform(this,'youtube')" data-platform="youtube" class="platform-chip flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-semibold bg-surface-container text-on-surface-variant transition-all border border-outline-variant/40 hover:border-outline/60" title="Requires a video file">
                 <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 YouTube
               </button>
@@ -782,7 +654,7 @@
           <!-- Live Preview -->
           <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold text-on-surface text-sm">Live Preview</h3>
+              <h3 class="font-bold text-xs uppercase tracking-widest" style="color:#00e5cc">Live Preview</h3>
               <div class="flex gap-1">
                 <button onclick="setPreview('x')" data-preview="x" class="preview-tab active text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant">X</button>
                 <button onclick="setPreview('linkedin')" data-preview="linkedin" class="preview-tab text-xs px-2.5 py-1 rounded-lg font-medium transition-all text-on-surface-variant">LinkedIn</button>
@@ -794,12 +666,12 @@
             <div id="preview-x" class="preview-content">
               <div class="bg-surface-container-low rounded-xl p-4">
                 <div class="flex items-start gap-2.5">
-                  <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">JM</div>
+                  <div id="preview-x-avatar" class="w-9 h-9 rounded-xl bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">X</div>
                   <div class="flex-1">
                     <div class="flex items-center gap-1.5 mb-1">
-                      <span class="text-sm font-bold text-on-surface">Jamie Mitchell</span>
+                      <span id="preview-x-name" class="text-sm font-bold text-on-surface">Your X Account</span>
                       <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="#1d9bf0"><path d="M22.25 12c0-1.43-.88-2.67-2.19-3.34.46-1.39.2-2.9-.81-3.91-1.01-1.01-2.52-1.27-3.91-.81-.67-1.31-1.91-2.19-3.34-2.19-1.43 0-2.67.88-3.34 2.19-1.39-.46-2.9-.2-3.91.81-1.01 1.01-1.27 2.52-.81 3.91C2.63 9.33 1.75 10.57 1.75 12c0 1.43.88 2.67 2.19 3.34-.46 1.39-.2 2.9.81 3.91 1.01 1.01 2.52 1.27 3.91.81.67 1.31 1.91 2.19 3.34 2.19 1.43 0 2.67-.88 3.34-2.19 1.39.46 2.9.2 3.91-.81 1.01-1.01 1.27-2.52.81-3.91 1.31-.67 2.19-1.91 2.19-3.34zm-11.71 4.2L6.8 12.46l1.41-1.42 2.26 2.26 4.8-5.23 1.47 1.36-6.2 6.77z"/></svg>
-                      <span class="text-xs text-on-surface-variant">@jamie_m · now</span>
+                      <span id="preview-x-handle" class="text-xs text-on-surface-variant">@username · now</span>
                     </div>
                     <p id="preview-x-text" class="text-sm text-on-surface leading-relaxed mb-3 whitespace-pre-wrap">Your post will appear here as you type...</p>
                     <div id="preview-x-img" class="hidden mb-3">
@@ -820,10 +692,9 @@
             <div id="preview-linkedin" class="preview-content hidden">
               <div class="bg-surface-container-low rounded-xl p-4">
                 <div class="flex items-start gap-2.5 mb-3">
-                  <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">JM</div>
+                  <div id="preview-li-avatar" class="w-10 h-10 rounded-xl bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold shrink-0">Li</div>
                   <div>
-                    <p class="text-sm font-bold text-on-surface">Jamie Mitchell</p>
-                    <p class="text-xs text-on-surface-variant">Marketing Director • 1st</p>
+                    <p id="preview-li-name" class="text-sm font-bold text-on-surface">Your LinkedIn</p>
                     <p class="text-xs text-on-surface-variant">now</p>
                   </div>
                 </div>
@@ -853,7 +724,7 @@
                     <div class="w-full h-full rounded-lg bg-gradient-to-br from-secondary to-secondary-dim flex items-center justify-center text-on-secondary text-xs font-bold">JM</div>
                   </div>
                   <div class="flex-1">
-                    <p class="text-xs font-bold text-on-surface">jamie_marketing</p>
+                    <p id="preview-ig-username" class="text-xs font-bold text-on-surface">your_instagram</p>
                   </div>
                   <span class="material-symbols-outlined text-on-surface-variant" style="font-size:18px">more_horiz</span>
                 </div>
@@ -870,7 +741,7 @@
                     <button><span class="material-symbols-outlined" style="font-size:20px">send</span></button>
                     <button class="ml-auto"><span class="material-symbols-outlined" style="font-size:20px">bookmark_border</span></button>
                   </div>
-                  <p class="text-xs text-on-surface leading-relaxed"><span class="font-bold">jamie_marketing</span> <span id="preview-ig-text">Your post will appear here as you type...</span></p>
+                  <p class="text-xs text-on-surface leading-relaxed"><span id="preview-ig-username-caption" class="font-bold">your_instagram</span> <span id="preview-ig-text">Your post will appear here as you type...</span></p>
                 </div>
               </div>
             </div>
@@ -880,43 +751,58 @@
           <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
             <div class="flex items-center justify-between mb-4">
               <h3 class="font-bold text-on-surface text-sm">Post Score</h3>
-              <div class="flex items-center gap-1.5">
-                <span id="score-badge" class="text-lg font-black text-secondary">0</span>
+              <div class="flex items-center gap-1">
+                <span id="score-badge" class="text-base font-black" style="color:#00e5cc">0</span>
                 <span class="text-xs text-on-surface-variant font-medium">/ 100</span>
               </div>
             </div>
-            <div class="flex flex-col gap-3">
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface-variant">Clarity</span>
-                  <span id="score-clarity-val" class="text-on-surface font-medium">0</span>
+            <!-- Circular gauge -->
+            <div class="flex items-center justify-center my-5">
+              <div class="relative w-48 h-48">
+                <svg viewBox="0 0 120 120" class="w-full h-full -rotate-90">
+                  <defs>
+                    <linearGradient id="scoreGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                      <stop offset="0%" stop-color="#00e5cc"/>
+                      <stop offset="100%" stop-color="#b2ff4d"/>
+                    </linearGradient>
+                  </defs>
+                  <!-- Track ring — always visible in teal at low opacity -->
+                  <circle cx="60" cy="60" r="46" fill="none" stroke="rgba(0,229,204,0.20)" stroke-width="8" stroke-linecap="round"/>
+                  <!-- Fill arc -->
+                  <circle id="score-arc" cx="60" cy="60" r="46" fill="none"
+                    stroke="url(#scoreGrad)" stroke-width="8" stroke-linecap="round"
+                    stroke-dasharray="289.0" stroke-dashoffset="289.0"
+                    style="transition:stroke-dashoffset 0.7s cubic-bezier(0.34,1.56,0.64,1);filter:drop-shadow(0 0 10px #00e5cc) drop-shadow(0 0 4px rgba(0,229,204,0.8))"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <span id="score-circle-num" class="text-4xl font-black" style="color:#00e5cc">0</span>
                 </div>
-                <div class="score-bar-track"><div id="score-clarity" class="score-bar-fill" style="width:0%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface-variant">Engagement</span>
-                  <span id="score-engagement-val" class="text-on-surface font-medium">0</span>
-                </div>
-                <div class="score-bar-track"><div id="score-engagement" class="score-bar-fill" style="width:0%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface-variant">Reach Potential</span>
-                  <span id="score-reach-val" class="text-on-surface font-medium">0</span>
-                </div>
-                <div class="score-bar-track"><div id="score-reach" class="score-bar-fill" style="width:0%"></div></div>
-              </div>
-              <div>
-                <div class="flex justify-between text-xs mb-1">
-                  <span class="text-on-surface-variant">Hashtags</span>
-                  <span id="score-hashtags-val" class="text-on-surface font-medium">0</span>
-                </div>
-                <div class="score-bar-track"><div id="score-hashtags" class="score-bar-fill" style="width:0%"></div></div>
               </div>
             </div>
-            <div id="score-tip" class="mt-4 p-3 bg-surface-container-low rounded-xl text-xs text-on-surface-variant leading-relaxed">
-              Start typing your post to receive optimization tips.
+            <!-- 2x2 sub-score grid -->
+            <div class="relative">
+              <div class="grid grid-cols-2 gap-x-4 gap-y-4 mt-2">
+                <div>
+                  <p class="text-[11px] text-on-surface-variant mb-2">Clarity</p>
+                  <div class="score-bar-track"><div id="score-clarity" class="score-bar-fill" style="width:0%"></div></div>
+                </div>
+                <div>
+                  <p class="text-[11px] text-on-surface-variant mb-2">Engagement</p>
+                  <div class="score-bar-track"><div id="score-engagement" class="score-bar-fill" style="width:0%"></div></div>
+                </div>
+                <div>
+                  <p class="text-[11px] text-on-surface-variant mb-2">Reach Potential</p>
+                  <div class="score-bar-track"><div id="score-reach" class="score-bar-fill" style="width:0%"></div></div>
+                </div>
+                <div>
+                  <p class="text-[11px] text-on-surface-variant mb-2">Hashtags</p>
+                  <div class="score-bar-track"><div id="score-hashtags" class="score-bar-fill" style="width:0%"></div></div>
+                </div>
+              </div>
+              <!-- Sparkle decoration -->
+              <svg class="absolute bottom-0 right-0 w-8 h-8 opacity-40" viewBox="0 0 40 40" fill="none">
+                <path d="M20 2 L21.5 18.5 L38 20 L21.5 21.5 L20 38 L18.5 21.5 L2 20 L18.5 18.5 Z" fill="#dde4f0"/>
+              </svg>
             </div>
           </div>
 
@@ -927,26 +813,26 @@
               <h3 class="font-bold text-on-surface text-sm">Best Time to Post</h3>
             </div>
             <div class="flex flex-col gap-2">
-              <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-3 py-2.5">
+              <div class="flex items-center justify-between bg-surface-container rounded-xl px-3 py-2.5">
                 <div>
                   <p class="text-xs font-semibold text-on-surface">Today 3:00 PM</p>
                   <p class="text-[11px] text-on-surface-variant">Sat, Apr 4</p>
                 </div>
-                <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">High</span>
+                <span class="text-xs font-semibold text-green-400 bg-green-900/30 px-2 py-0.5 rounded-full">High</span>
               </div>
-              <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-3 py-2.5">
+              <div class="flex items-center justify-between bg-surface-container rounded-xl px-3 py-2.5">
                 <div>
                   <p class="text-xs font-semibold text-on-surface">Tomorrow 9:00 AM</p>
                   <p class="text-[11px] text-on-surface-variant">Sun, Apr 5</p>
                 </div>
-                <span class="text-xs font-semibold text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30 px-2 py-0.5 rounded-full">Medium</span>
+                <span class="text-xs font-semibold text-yellow-400 bg-yellow-900/30 px-2 py-0.5 rounded-full">Medium</span>
               </div>
-              <div class="flex items-center justify-between bg-surface-container-lowest rounded-xl px-3 py-2.5">
+              <div class="flex items-center justify-between bg-surface-container rounded-xl px-3 py-2.5">
                 <div>
                   <p class="text-xs font-semibold text-on-surface">Apr 6, 11:00 AM</p>
                   <p class="text-[11px] text-on-surface-variant">Mon, Apr 6</p>
                 </div>
-                <span class="text-xs font-semibold text-yellow-600 dark:text-yellow-400 bg-yellow-100 dark:bg-yellow-900/30 px-2 py-0.5 rounded-full">Medium</span>
+                <span class="text-xs font-semibold text-yellow-400 bg-yellow-900/30 px-2 py-0.5 rounded-full">Medium</span>
               </div>
             </div>
           </div>
@@ -971,11 +857,11 @@
 
       <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
         <div class="flex items-center justify-between mb-6">
-          <button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors">
+          <button id="cal-prev" class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors">
             <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">chevron_left</span>
           </button>
-          <h2 class="font-black text-on-surface text-lg tracking-tight">April 2026</h2>
-          <button class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors">
+          <h2 id="cal-title" class="font-black text-on-surface text-lg tracking-tight"></h2>
+          <button id="cal-next" class="w-8 h-8 flex items-center justify-center rounded-xl hover:bg-surface-container transition-colors">
             <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">chevron_right</span>
           </button>
         </div>
@@ -990,109 +876,7 @@
           <div class="text-center text-xs font-semibold text-on-surface-variant py-2">Sat</div>
         </div>
 
-        <div class="grid grid-cols-7">
-          <!-- Prev month days -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1">29</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1">30</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1">31</div></div>
-          <!-- Apr 1 -->
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">1</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#0a66c2;color:#fff">LinkedIn • 9AM</div>
-          </div>
-          <!-- Apr 2 -->
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">2</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#010101;color:#fff">TikTok • 6PM</div>
-          </div>
-          <!-- Apr 3 -->
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">3</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#1877f2;color:#fff">Facebook • 11AM</div>
-          </div>
-          <!-- Apr 4 (today) -->
-          <div class="cal-day p-1.5 min-h-[80px] bg-secondary-container/20 rounded-xl">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-bold text-on-secondary bg-secondary rounded-full mx-auto mb-1">4</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:linear-gradient(90deg,#f09433,#dc2743,#bc1888);color:#fff">Instagram • 3PM</div>
-          </div>
-          <!-- Week 2 -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">5</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">6</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#000;color:#fff">X Thread • 9AM</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#0a66c2;color:#fff">LinkedIn • 2PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">7</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">8</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:linear-gradient(90deg,#f09433,#dc2743,#bc1888);color:#fff">IG Reel • 5PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">9</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#010101;color:#fff">TikTok • 7PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">10</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">11</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#1877f2;color:#fff">FB Ad • 10AM</div>
-          </div>
-          <!-- Week 3 -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">12</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">13</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#0a66c2;color:#fff">LinkedIn • 8AM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">14</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#000;color:#fff">X Poll • 12PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">15</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">16</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:linear-gradient(90deg,#f09433,#dc2743,#bc1888);color:#fff">IG Story • 3PM</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#010101;color:#fff">TikTok • 6PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">17</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">18</div></div>
-          <!-- Week 4 -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">19</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">20</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#0a66c2;color:#fff">LinkedIn • 9AM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">21</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#1877f2;color:#fff">Facebook • 1PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">22</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">23</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#000;color:#fff">X Thread • 4PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">24</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:linear-gradient(90deg,#f09433,#dc2743,#bc1888);color:#fff">IG Carousel • 2PM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">25</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#010101;color:#fff">TikTok • 7PM</div>
-          </div>
-          <!-- Week 5 -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">26</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">27</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#0a66c2;color:#fff">LinkedIn • 8AM</div>
-          </div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">28</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">29</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]">
-            <div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1">30</div>
-            <div class="text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate" style="background:#1877f2;color:#fff">FB Campaign • 12PM</div>
-          </div>
-          <!-- Next month days -->
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1">1</div></div>
-          <div class="cal-day p-1.5 min-h-[80px]"><div class="cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1">2</div></div>
-        </div>
+        <div id="cal-grid" class="grid grid-cols-7"></div>
       </div>
 
       <div class="mt-4 flex flex-wrap gap-3">
@@ -1134,35 +918,31 @@
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
-            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">visibility</span>
-            <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+24%</span>
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">send</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">2.4M</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Impressions</p>
+          <p id="ana-published" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">Posts Published</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
-            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">link</span>
-            <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+11%</span>
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">schedule</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">18.6k</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Link Clicks</p>
+          <p id="ana-scheduled" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">Scheduled</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
-            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">person_add</span>
-            <span class="text-xs font-semibold text-green-600 dark:text-green-400 bg-green-100 dark:bg-green-900/30 px-2 py-0.5 rounded-full">+8%</span>
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">hub</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">+1,247</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">New Followers</p>
+          <p id="ana-platforms" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">Platforms Used</p>
         </div>
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <div class="flex items-start justify-between mb-3">
-            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">ads_click</span>
-            <span class="text-xs font-semibold text-error bg-red-100 dark:bg-red-900/30 px-2 py-0.5 rounded-full">-0.3%</span>
+            <span class="material-symbols-outlined text-on-surface-variant" style="font-size:20px">today</span>
           </div>
-          <p class="text-2xl font-black text-on-surface tracking-tight">3.8%</p>
-          <p class="text-xs text-on-surface-variant mt-0.5">Avg CTR</p>
+          <p id="ana-this-week" class="text-2xl font-black text-on-surface tracking-tight">—</p>
+          <p class="text-xs text-on-surface-variant mt-0.5">This Week</p>
         </div>
       </div>
 
@@ -1172,205 +952,26 @@
         <!-- Platform Breakdown -->
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
           <h3 class="font-bold text-on-surface mb-5">Platform Breakdown</h3>
-          <div class="flex flex-col gap-4">
-            <div>
-              <div class="flex items-center justify-between text-xs mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-5 h-5 rounded bg-[#010101] flex items-center justify-center">
-                    <svg class="w-3 h-3 fill-white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                  </div>
-                  <span class="font-medium text-on-surface">TikTok</span>
-                </div>
-                <span class="text-on-surface-variant">48.2k reach</span>
-              </div>
-              <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
-                <div class="analytics-bar" style="background:#010101;width:88%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between text-xs mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-5 h-5 rounded ig-gradient flex items-center justify-center">
-                    <svg class="w-3 h-3 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                  </div>
-                  <span class="font-medium text-on-surface">Instagram</span>
-                </div>
-                <span class="text-on-surface-variant">34.1k reach</span>
-              </div>
-              <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
-                <div class="analytics-bar" style="background:linear-gradient(90deg,#f09433,#dc2743,#bc1888);width:70%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between text-xs mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-5 h-5 rounded flex items-center justify-center" style="background:#0a66c2">
-                    <svg class="w-3 h-3 fill-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </div>
-                  <span class="font-medium text-on-surface">LinkedIn</span>
-                </div>
-                <span class="text-on-surface-variant">24.7k reach</span>
-              </div>
-              <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
-                <div class="analytics-bar" style="background:#0a66c2;width:52%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between text-xs mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-5 h-5 rounded bg-black dark:bg-white flex items-center justify-center">
-                    <svg class="w-3 h-3 fill-white dark:fill-black" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-                  </div>
-                  <span class="font-medium text-on-surface">X</span>
-                </div>
-                <span class="text-on-surface-variant">10.8k reach</span>
-              </div>
-              <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
-                <div class="analytics-bar" style="background:#000;width:28%"></div>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between text-xs mb-1.5">
-                <div class="flex items-center gap-2">
-                  <div class="w-5 h-5 rounded flex items-center justify-center" style="background:#1877f2">
-                    <svg class="w-3 h-3 fill-white" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                  </div>
-                  <span class="font-medium text-on-surface">Facebook</span>
-                </div>
-                <span class="text-on-surface-variant">6.7k reach</span>
-              </div>
-              <div class="h-2 bg-surface-container-high rounded-full overflow-hidden">
-                <div class="analytics-bar" style="background:#1877f2;width:18%"></div>
-              </div>
-            </div>
-          </div>
+          <div id="platform-breakdown" class="flex flex-col gap-4"></div>
         </div>
 
-        <!-- Top Posts This Week -->
+        <!-- Top Posts -->
         <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
-          <h3 class="font-bold text-on-surface mb-5">Top Posts This Week</h3>
-          <div class="flex flex-col gap-4">
-            <div class="flex items-start gap-3">
-              <div class="w-7 h-7 rounded-xl bg-secondary-container flex items-center justify-center text-on-secondary-container text-xs font-black shrink-0">1</div>
-              <div class="flex-1">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <div class="w-4 h-4 rounded bg-[#010101] flex items-center justify-center shrink-0">
-                    <svg class="w-2.5 h-2.5 fill-white" viewBox="0 0 24 24"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                  </div>
-                  <p class="text-sm font-semibold text-on-surface">Day in the life: design process POV</p>
-                </div>
-                <div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
-                  <span>14.2k likes</span>
-                  <span>328 comments</span>
-                  <span class="ml-auto font-semibold text-secondary">88% reach</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-7 h-7 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant text-xs font-black shrink-0">2</div>
-              <div class="flex-1">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <div class="w-4 h-4 rounded ig-gradient flex items-center justify-center shrink-0">
-                    <svg class="w-2.5 h-2.5 fill-white" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                  </div>
-                  <p class="text-sm font-semibold text-on-surface">Behind the scenes: Our team at work</p>
-                </div>
-                <div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
-                  <span>2.4k likes</span>
-                  <span>187 comments</span>
-                  <span class="ml-auto font-semibold text-secondary">62% reach</span>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-start gap-3">
-              <div class="w-7 h-7 rounded-xl bg-surface-container flex items-center justify-center text-on-surface-variant text-xs font-black shrink-0">3</div>
-              <div class="flex-1">
-                <div class="flex items-center gap-1.5 mb-0.5">
-                  <div class="w-4 h-4 rounded flex items-center justify-center shrink-0" style="background:#0a66c2">
-                    <svg class="w-2.5 h-2.5 fill-white" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                  </div>
-                  <p class="text-sm font-semibold text-on-surface">5 Lessons from Scaling to 100k Users</p>
-                </div>
-                <div class="flex items-center gap-3 text-xs text-on-surface-variant mt-1">
-                  <span>1.8k likes</span>
-                  <span>94 comments</span>
-                  <span class="ml-auto font-semibold text-secondary">45% reach</span>
-                </div>
-              </div>
-            </div>
-          </div>
+          <h3 class="font-bold text-on-surface mb-5">Top Posts</h3>
+          <div id="top-posts-list" class="flex flex-col gap-4"></div>
         </div>
 
       </div>
 
-      <!-- Engagement Over Time -->
+      <!-- Posts Published Over Time -->
       <div class="bg-surface-container-lowest rounded-xl p-5 shadow-sm shadow-on-surface/5">
         <div class="flex items-center justify-between mb-6">
-          <h3 class="font-bold text-on-surface">Engagement Over Time</h3>
+          <h3 class="font-bold text-on-surface">Posts Published Over Time</h3>
           <div class="flex items-center gap-4 text-xs text-on-surface-variant">
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm inline-block" style="background:var(--secondary)"></span>Likes</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-surface-container-highest inline-block"></span>Shares</span>
-            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm bg-surface-container-high inline-block"></span>Comments</span>
+            <span class="flex items-center gap-1.5"><span class="w-2.5 h-2.5 rounded-sm inline-block" style="background:var(--secondary)"></span>Posts</span>
           </div>
         </div>
-        <div class="flex items-end gap-3 h-40">
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:18px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:24px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:58px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Sat</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:12px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:16px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:36px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Sun</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:22px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:28px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:68px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Mon</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:16px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:22px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:52px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Tue</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:26px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:34px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:80px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Wed</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:20px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:28px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:62px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Thu</span>
-          </div>
-          <div class="flex-1 flex flex-col items-center gap-1">
-            <div class="w-full flex flex-col items-center justify-end gap-px" style="height:120px">
-              <div class="w-full rounded-t-sm" style="height:14px;background:var(--surface-container-high)"></div>
-              <div class="w-full" style="height:20px;background:var(--surface-container-highest)"></div>
-              <div class="w-full rounded-sm" style="height:44px;background:var(--secondary)"></div>
-            </div>
-            <span class="text-[10px] text-on-surface-variant">Fri</span>
-          </div>
-        </div>
+        <div id="engagement-chart" class="flex items-end gap-3 h-40"></div>
       </div>
     </div>
 
@@ -1656,6 +1257,7 @@
   // Post score calculation
   function updateScore(text) {
     if (!text || text.length === 0) {
+      setScoreCircle(0);
       setScoreBar('clarity', 0);
       setScoreBar('engagement', 0);
       setScoreBar('reach', 0);
@@ -1719,8 +1321,7 @@
     setScoreBar('hashtags', Math.round(hashScore));
 
     var total = Math.round((clarity + engagement + reach + hashScore) / 4);
-    var badge = document.getElementById('score-badge');
-    if (badge) badge.textContent = String(total);
+    setScoreCircle(total);
 
     var tip = document.getElementById('score-tip');
     if (tip) {
@@ -1735,9 +1336,17 @@
 
   function setScoreBar(metric, value) {
     var bar = document.getElementById('score-' + metric);
-    var val = document.getElementById('score-' + metric + '-val');
     if (bar) bar.style.width = value + '%';
-    if (val) val.textContent = String(value);
+  }
+
+  function setScoreCircle(total) {
+    var arc   = document.getElementById('score-arc');
+    var num   = document.getElementById('score-circle-num');
+    var badge = document.getElementById('score-badge');
+    var circumference = 289.0;
+    if (arc)   arc.style.strokeDashoffset = String(circumference - (circumference * total / 100));
+    if (num)   { num.textContent = String(total); num.style.color = '#00e5cc'; }
+    if (badge) { badge.textContent = String(total); badge.style.color = '#00e5cc'; }
   }
 
   // Preview platform switching
@@ -2020,6 +1629,7 @@
   // Initialise on load
   window.addEventListener('DOMContentLoaded', function() {
     checkConnectionStatus()
+    initRealData()
     // Refresh connection status after an OAuth popup closes successfully
     window.addEventListener('message', function(e) {
       if (e.data === 'oauth-success') checkConnectionStatus()
@@ -2172,6 +1782,786 @@
       closeAiPanel()
       showToast('AI post applied to composer!')
     }
+  }
+
+  // ============================================================
+  // REAL DATA — fetches /api/posts and /api/scheduled, then
+  // populates every dynamic section of the dashboard, calendar,
+  // and analytics views.
+  // All user data is set via textContent only. innerHTML is used
+  // only for static, developer-controlled SVG icon strings.
+  // ============================================================
+
+  // ---- Shared helpers ----
+
+  function timeAgo(dateStr) {
+    if (!dateStr) return '';
+    var diff = Date.now() - new Date(dateStr).getTime();
+    var mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'just now';
+    if (mins < 60) return mins + 'm ago';
+    var hrs = Math.floor(mins / 60);
+    if (hrs < 24) return hrs + 'h ago';
+    var days = Math.floor(hrs / 24);
+    if (days < 7) return days + 'd ago';
+    var wks = Math.floor(days / 7);
+    if (wks < 5) return wks + 'w ago';
+    var mths = Math.floor(days / 30);
+    return mths + 'mo ago';
+  }
+
+  // Static SVG path data per platform (no user data)
+  var PLATFORM_SVG_PATHS = {
+    x:        'M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.748l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z',
+    linkedin: 'M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z',
+    instagram:'M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z',
+    facebook: 'M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z',
+    tiktok:   'M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z',
+    youtube:  'M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z'
+  };
+
+  // Build a platform icon <svg> element using DOM methods (no innerHTML with user data)
+  function makePlatformSvgEl(platform, widthClass, heightClass) {
+    var svgNS = 'http://www.w3.org/2000/svg';
+    var svg = document.createElementNS(svgNS, 'svg');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.classList.add(widthClass || 'w-4', heightClass || 'h-4', 'fill-white');
+    if (platform === 'x') svg.classList.add('dark:fill-black');
+    var path = document.createElementNS(svgNS, 'path');
+    path.setAttribute('d', PLATFORM_SVG_PATHS[platform] || '');
+    svg.appendChild(path);
+    return svg;
+  }
+
+  // Build the colored icon wrapper div for a platform
+  function makePlatformIconDiv(platform, sizeClass) {
+    var sz = sizeClass || 'w-8 h-8';
+    var div = document.createElement('div');
+    div.className = sz + ' rounded-xl flex items-center justify-center shrink-0';
+    var bgMap = {
+      x:        { cls: 'bg-black dark:bg-white', style: '' },
+      linkedin: { cls: '', style: 'background:#0a66c2' },
+      instagram:{ cls: 'ig-gradient', style: '' },
+      facebook: { cls: '', style: 'background:#1877f2' },
+      tiktok:   { cls: 'bg-[#010101]', style: '' },
+      youtube:  { cls: '', style: 'background:#ff0000' }
+    };
+    var bg = bgMap[platform] || { cls: 'bg-surface-container', style: '' };
+    if (bg.cls) bg.cls.split(' ').filter(Boolean).forEach(function(c) { div.classList.add(c); });
+    if (bg.style) div.setAttribute('style', bg.style);
+    var iconSize = sizeClass && sizeClass.indexOf('w-5') !== -1 ? ['w-3','h-3'] :
+                  sizeClass && sizeClass.indexOf('w-4') !== -1 ? ['w-2.5','h-2.5'] :
+                  ['w-4','h-4'];
+    div.appendChild(makePlatformSvgEl(platform, iconSize[0], iconSize[1]));
+    return div;
+  }
+
+  function platformColor(platform) {
+    var map = {
+      x: '#000000',
+      linkedin: '#0a66c2',
+      instagram: 'linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)',
+      facebook: '#1877f2',
+      tiktok: '#010101',
+      youtube: '#ff0000'
+    };
+    return map[platform] || '#5a5b60';
+  }
+
+  function platformLabel(platform) {
+    var labels = { x: 'X', linkedin: 'LinkedIn', instagram: 'Instagram', facebook: 'Facebook', tiktok: 'TikTok', youtube: 'YouTube' };
+    return labels[platform] || platform;
+  }
+
+  // ---- 1. Greeting ----
+
+  function renderGreeting() {
+    var now = new Date();
+    var h = now.getHours();
+    var greeting = h < 12 ? 'Good morning' : h < 17 ? 'Good afternoon' : 'Good evening';
+    var greetEl = document.getElementById('dash-greeting');
+    if (greetEl) greetEl.textContent = greeting + ' \uD83D\uDC4B';
+
+    var days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+    var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+    var dateStr = days[now.getDay()] + ', ' + months[now.getMonth()] + ' ' + now.getDate() + ', ' + now.getFullYear() + ' \u2014 Here\u2019s your content overview';
+    var dateEl = document.getElementById('dash-date');
+    if (dateEl) dateEl.textContent = dateStr;
+  }
+
+  // ---- 2. Dashboard Stats ----
+
+  function renderDashStats(posts, scheduled) {
+    var now = Date.now();
+    var weekMs = 7 * 24 * 60 * 60 * 1000;
+    var uniquePlatforms = new Set();
+    posts.forEach(function(p) { (p.platforms || []).forEach(function(pl) { uniquePlatforms.add(pl); }); });
+    var thisWeek = posts.filter(function(p) {
+      return p.publishedAt && (now - new Date(p.publishedAt).getTime()) <= weekMs;
+    }).length;
+
+    var el;
+    el = document.getElementById('stat-total-posts'); if (el) el.textContent = String(posts.length);
+    el = document.getElementById('stat-platforms');   if (el) el.textContent = String(uniquePlatforms.size);
+    el = document.getElementById('stat-scheduled');   if (el) el.textContent = String(scheduled.length);
+    el = document.getElementById('stat-this-week');   if (el) el.textContent = String(thisWeek);
+  }
+
+  // ---- 3. Recent Posts ----
+
+  function renderRecentPosts(posts) {
+    var container = document.getElementById('recent-posts-list');
+    if (!container) return;
+
+    if (!posts || posts.length === 0) {
+      var emptyWrap = document.createElement('div');
+      emptyWrap.className = 'flex flex-col items-center justify-center py-10 gap-3 text-center';
+      var msg = document.createElement('p');
+      msg.className = 'text-sm text-on-surface-variant';
+      msg.textContent = 'No posts published yet. Create your first post!';
+      var btn = document.createElement('button');
+      btn.className = 'btn-primary px-4 py-2 rounded-xl text-sm font-semibold';
+      btn.textContent = 'Create Post';
+      btn.addEventListener('click', function() { switchView('compose'); });
+      emptyWrap.appendChild(msg);
+      emptyWrap.appendChild(btn);
+      container.appendChild(emptyWrap);
+      return;
+    }
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'flex flex-col gap-3';
+
+    var recent = posts.slice().sort(function(a, b) {
+      return new Date(b.publishedAt || b.createdAt) - new Date(a.publishedAt || a.createdAt);
+    }).slice(0, 4);
+
+    recent.forEach(function(post) {
+      var platforms = post.platforms || [];
+      var firstPlatform = platforms[0] || 'x';
+
+      var card = document.createElement('div');
+      card.className = 'bg-surface-container-lowest rounded-xl p-4 shadow-sm shadow-on-surface/5';
+
+      var iconDiv = makePlatformIconDiv(firstPlatform, 'w-8 h-8');
+
+      var contentDiv = document.createElement('div');
+      contentDiv.className = 'flex-1 min-w-0';
+
+      var headerRow = document.createElement('div');
+      headerRow.className = 'flex items-center justify-between gap-2 mb-1';
+
+      var textEl = document.createElement('p');
+      textEl.className = 'font-semibold text-sm text-on-surface truncate';
+      textEl.textContent = (post.text || '').slice(0, 80);
+
+      var timeEl = document.createElement('span');
+      timeEl.className = 'text-xs text-on-surface-variant shrink-0';
+      timeEl.textContent = timeAgo(post.publishedAt || post.createdAt);
+
+      headerRow.appendChild(textEl);
+      headerRow.appendChild(timeEl);
+
+      var chipsRow = document.createElement('div');
+      chipsRow.className = 'flex flex-wrap gap-1 mt-2';
+      platforms.forEach(function(pl) {
+        var chip = document.createElement('span');
+        chip.className = 'text-[10px] font-medium px-2 py-0.5 rounded-full text-white';
+        var col = platformColor(pl);
+        if (col.indexOf('gradient') !== -1) {
+          chip.setAttribute('style', 'background:' + col);
+        } else {
+          chip.setAttribute('style', 'background:' + col);
+        }
+        chip.textContent = platformLabel(pl);
+        chipsRow.appendChild(chip);
+      });
+
+      contentDiv.appendChild(headerRow);
+      contentDiv.appendChild(chipsRow);
+
+      var rowDiv = document.createElement('div');
+      rowDiv.className = 'flex items-start gap-3';
+      rowDiv.appendChild(iconDiv);
+      rowDiv.appendChild(contentDiv);
+      card.appendChild(rowDiv);
+      wrapper.appendChild(card);
+    });
+
+    container.appendChild(wrapper);
+  }
+
+  // ---- 4. Upcoming ----
+
+  function renderUpcoming(scheduled) {
+    var container = document.getElementById('upcoming-list');
+    if (!container) return;
+
+    if (!scheduled || scheduled.length === 0) {
+      var p = document.createElement('p');
+      p.className = 'text-xs text-on-surface-variant py-2';
+      p.textContent = 'No upcoming posts scheduled.';
+      container.appendChild(p);
+      return;
+    }
+
+    var now = new Date();
+    var todayStr = now.toDateString();
+    var tomorrow = new Date(now); tomorrow.setDate(tomorrow.getDate() + 1);
+    var tomorrowStr = tomorrow.toDateString();
+
+    var sorted = scheduled.slice().sort(function(a, b) {
+      return new Date(a.scheduledAt) - new Date(b.scheduledAt);
+    }).slice(0, 5);
+
+    var wrapper = document.createElement('div');
+    wrapper.className = 'flex flex-col gap-3';
+
+    sorted.forEach(function(item) {
+      var dt = new Date(item.scheduledAt);
+      var dtStr = dt.toDateString();
+      var timeStr = dt.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      var label;
+      if (dtStr === todayStr) {
+        label = 'Today \u2022 ' + timeStr;
+      } else if (dtStr === tomorrowStr) {
+        label = 'Tomorrow \u2022 ' + timeStr;
+      } else {
+        var mAbbr = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][dt.getMonth()];
+        label = mAbbr + ' ' + dt.getDate() + ' \u2022 ' + timeStr;
+      }
+
+      var platforms = item.platforms || [];
+      var firstPlatform = platforms[0] || 'x';
+      var color = platformColor(firstPlatform);
+
+      var row = document.createElement('div');
+      row.className = 'flex items-center gap-3';
+
+      var dot = document.createElement('div');
+      dot.className = 'w-2 h-2 rounded-full shrink-0';
+      dot.setAttribute('style', 'background:' + (color.indexOf('gradient') !== -1 ? 'linear-gradient(45deg,#f09433,#bc1888)' : color));
+
+      var info = document.createElement('div');
+      info.className = 'flex-1 min-w-0';
+
+      var title = document.createElement('p');
+      title.className = 'text-xs font-semibold text-on-surface truncate';
+      title.textContent = (item.text || item.campaignName || 'Scheduled post').slice(0, 40);
+
+      var sub = document.createElement('p');
+      sub.className = 'text-[11px] text-on-surface-variant';
+      sub.textContent = label;
+
+      info.appendChild(title);
+      info.appendChild(sub);
+      row.appendChild(dot);
+      row.appendChild(info);
+      wrapper.appendChild(row);
+    });
+
+    container.appendChild(wrapper);
+  }
+
+  // ---- 5. Best Performer ----
+
+  function renderBestPerformer(posts) {
+    var textEl = document.getElementById('best-performer-text');
+    var metaEl = document.getElementById('best-performer-meta');
+    if (!textEl || !metaEl) return;
+
+    if (!posts || posts.length === 0) {
+      textEl.textContent = 'Publish your first post to see performance here.';
+      metaEl.textContent = '';
+      return;
+    }
+
+    var sorted = posts.slice().sort(function(a, b) {
+      return new Date(b.publishedAt || b.createdAt) - new Date(a.publishedAt || a.createdAt);
+    });
+    var best = sorted[0];
+    textEl.textContent = (best.text || '').slice(0, 60);
+    var platforms = (best.platforms || []).map(platformLabel).join(', ');
+    metaEl.textContent = (platforms || 'Unknown') + ' \u2022 ' + timeAgo(best.publishedAt || best.createdAt);
+  }
+
+  // ---- 6. Top Hashtags ----
+
+  function renderTopHashtags(posts) {
+    var container = document.getElementById('top-hashtags-list');
+    if (!container) return;
+
+    var counts = {};
+    posts.forEach(function(post) {
+      var matches = (post.text || '').match(/#\w+/g);
+      if (matches) {
+        matches.forEach(function(tag) {
+          var lower = tag.toLowerCase();
+          counts[lower] = (counts[lower] || 0) + 1;
+        });
+      }
+    });
+
+    var sorted = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; }).slice(0, 5);
+
+    if (sorted.length === 0) {
+      var p = document.createElement('p');
+      p.className = 'text-xs text-on-surface-variant';
+      p.textContent = 'No hashtags used yet.';
+      container.appendChild(p);
+      return;
+    }
+
+    var maxCount = counts[sorted[0]];
+
+    sorted.forEach(function(tag) {
+      var pct = Math.round((counts[tag] / maxCount) * 100);
+
+      var row = document.createElement('div');
+
+      var labelRow = document.createElement('div');
+      labelRow.className = 'flex justify-between text-xs mb-1';
+
+      var tagSpan = document.createElement('span');
+      tagSpan.className = 'text-on-surface font-medium';
+      tagSpan.textContent = tag;
+
+      var pctSpan = document.createElement('span');
+      pctSpan.className = 'text-on-surface-variant';
+      pctSpan.textContent = pct + '%';
+
+      labelRow.appendChild(tagSpan);
+      labelRow.appendChild(pctSpan);
+
+      var track = document.createElement('div');
+      track.className = 'score-bar-track';
+      var fill = document.createElement('div');
+      fill.className = 'score-bar-fill';
+      fill.style.width = pct + '%';
+      track.appendChild(fill);
+
+      row.appendChild(labelRow);
+      row.appendChild(track);
+      container.appendChild(row);
+    });
+  }
+
+  // ---- 7. Calendar ----
+
+  var calYear, calMonth, calScheduled;
+
+  function renderCalendar(year, month, scheduled) {
+    var titleEl = document.getElementById('cal-title');
+    if (titleEl) {
+      var mNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      titleEl.textContent = mNames[month] + ' ' + year;
+    }
+
+    var grid = document.getElementById('cal-grid');
+    if (!grid) return;
+
+    // Remove existing day cells only (keep nothing; it's a fresh render)
+    while (grid.firstChild) grid.removeChild(grid.firstChild);
+
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Build a lookup: dayOfMonth -> [scheduled items]
+    var dayMap = {};
+    (scheduled || []).forEach(function(item) {
+      if (!item.scheduledAt) return;
+      var d = new Date(item.scheduledAt);
+      if (d.getFullYear() !== year || d.getMonth() !== month) return;
+      var dayKey = d.getDate();
+      if (!dayMap[dayKey]) dayMap[dayKey] = [];
+      dayMap[dayKey].push(item);
+    });
+
+    var firstDay = new Date(year, month, 1).getDay();
+    var daysInMonth = new Date(year, month + 1, 0).getDate();
+    var daysInPrev = new Date(year, month, 0).getDate();
+
+    // Leading filler (prev month)
+    for (var i = 0; i < firstDay; i++) {
+      var dayNum = daysInPrev - firstDay + 1 + i;
+      var cell = document.createElement('div');
+      cell.className = 'cal-day p-1.5 min-h-[80px]';
+      var numEl = document.createElement('div');
+      numEl.className = 'cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1';
+      numEl.textContent = String(dayNum);
+      cell.appendChild(numEl);
+      grid.appendChild(cell);
+    }
+
+    // Current month days
+    for (var d = 1; d <= daysInMonth; d++) {
+      var cellDate = new Date(year, month, d);
+      cellDate.setHours(0, 0, 0, 0);
+      var isToday = cellDate.getTime() === today.getTime();
+      var dayItems = dayMap[d] || [];
+
+      var cell = document.createElement('div');
+      cell.className = 'cal-day p-1.5 min-h-[80px]' + (isToday ? ' bg-secondary-container/20 rounded-xl' : '');
+
+      var numEl = document.createElement('div');
+      if (isToday) {
+        numEl.className = 'cal-day-num w-7 h-7 flex items-center justify-center text-xs font-bold text-on-secondary bg-secondary rounded-full mx-auto mb-1';
+      } else {
+        numEl.className = 'cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface rounded-full mx-auto mb-1';
+      }
+      numEl.textContent = String(d);
+      cell.appendChild(numEl);
+
+      dayItems.forEach(function(item) {
+        var platforms = item.platforms || [];
+        var firstPlatform = platforms[0] || 'x';
+        var color = platformColor(firstPlatform);
+        var dt2 = new Date(item.scheduledAt);
+        var timeStr = dt2.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
+        var chip = document.createElement('div');
+        chip.className = 'text-[10px] font-medium px-1.5 py-0.5 rounded-lg mb-0.5 truncate';
+        if (color.indexOf('gradient') !== -1) {
+          chip.setAttribute('style', 'background:linear-gradient(45deg,#f09433,#dc2743,#bc1888);color:#fff');
+        } else {
+          chip.setAttribute('style', 'background:' + color + ';color:#fff');
+        }
+        chip.textContent = platformLabel(firstPlatform) + ' \u2022 ' + timeStr;
+        cell.appendChild(chip);
+      });
+
+      grid.appendChild(cell);
+    }
+
+    // Trailing filler (next month)
+    var totalCells = firstDay + daysInMonth;
+    var remainder = totalCells % 7;
+    var trailing = remainder === 0 ? 0 : 7 - remainder;
+    for (var j = 1; j <= trailing; j++) {
+      var cell = document.createElement('div');
+      cell.className = 'cal-day p-1.5 min-h-[80px]';
+      var numEl = document.createElement('div');
+      numEl.className = 'cal-day-num w-7 h-7 flex items-center justify-center text-xs font-medium text-on-surface-variant/50 rounded-full mx-auto mb-1';
+      numEl.textContent = String(j);
+      cell.appendChild(numEl);
+      grid.appendChild(cell);
+    }
+  }
+
+  function initCalendar(scheduled) {
+    var now = new Date();
+    calYear     = now.getFullYear();
+    calMonth    = now.getMonth();
+    calScheduled = scheduled;
+
+    renderCalendar(calYear, calMonth, calScheduled);
+
+    var prevBtn = document.getElementById('cal-prev');
+    var nextBtn = document.getElementById('cal-next');
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function() {
+        calMonth--;
+        if (calMonth < 0) { calMonth = 11; calYear--; }
+        renderCalendar(calYear, calMonth, calScheduled);
+      });
+    }
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function() {
+        calMonth++;
+        if (calMonth > 11) { calMonth = 0; calYear++; }
+        renderCalendar(calYear, calMonth, calScheduled);
+      });
+    }
+  }
+
+  // ---- 8. Analytics Stats ----
+
+  function renderAnalyticsStats(posts, scheduled) {
+    var now = Date.now();
+    var weekMs = 7 * 24 * 60 * 60 * 1000;
+    var uniquePlatforms = new Set();
+    posts.forEach(function(p) { (p.platforms || []).forEach(function(pl) { uniquePlatforms.add(pl); }); });
+    var thisWeek = posts.filter(function(p) {
+      return p.publishedAt && (now - new Date(p.publishedAt).getTime()) <= weekMs;
+    }).length;
+
+    var el;
+    el = document.getElementById('ana-published');  if (el) el.textContent = String(posts.length);
+    el = document.getElementById('ana-scheduled');   if (el) el.textContent = String(scheduled.length);
+    el = document.getElementById('ana-platforms');   if (el) el.textContent = String(uniquePlatforms.size);
+    el = document.getElementById('ana-this-week');   if (el) el.textContent = String(thisWeek);
+  }
+
+  // ---- 9. Platform Breakdown ----
+
+  function renderPlatformBreakdown(posts) {
+    var container = document.getElementById('platform-breakdown');
+    if (!container) return;
+
+    var counts = {};
+    posts.forEach(function(p) {
+      (p.platforms || []).forEach(function(pl) {
+        counts[pl] = (counts[pl] || 0) + 1;
+      });
+    });
+
+    var sorted = Object.keys(counts).sort(function(a, b) { return counts[b] - counts[a]; });
+    if (sorted.length === 0) {
+      var p = document.createElement('p');
+      p.className = 'text-xs text-on-surface-variant';
+      p.textContent = 'No platform data yet.';
+      container.appendChild(p);
+      return;
+    }
+
+    var maxCount = counts[sorted[0]];
+    var barStyleMap = {
+      x: 'background:#000000',
+      linkedin: 'background:#0a66c2',
+      instagram: 'background:linear-gradient(90deg,#f09433,#dc2743,#bc1888)',
+      facebook: 'background:#1877f2',
+      tiktok: 'background:#010101',
+      youtube: 'background:#ff0000'
+    };
+
+    sorted.forEach(function(pl) {
+      var count = counts[pl];
+      var pct   = Math.round((count / maxCount) * 100);
+
+      var row = document.createElement('div');
+
+      var header = document.createElement('div');
+      header.className = 'flex items-center justify-between text-xs mb-1.5';
+
+      // Left: icon + label — icon uses DOM methods, label uses textContent
+      var left = document.createElement('div');
+      left.className = 'flex items-center gap-2';
+      left.appendChild(makePlatformIconDiv(pl, 'w-5 h-5'));
+
+      var nameSpan = document.createElement('span');
+      nameSpan.className = 'font-medium text-on-surface';
+      nameSpan.textContent = platformLabel(pl);
+      left.appendChild(nameSpan);
+
+      var right = document.createElement('span');
+      right.className = 'text-on-surface-variant';
+      right.textContent = count + ' post' + (count !== 1 ? 's' : '');
+
+      header.appendChild(left);
+      header.appendChild(right);
+
+      var track = document.createElement('div');
+      track.className = 'h-2 bg-surface-container-high rounded-full overflow-hidden';
+      var bar = document.createElement('div');
+      bar.className = 'analytics-bar';
+      bar.setAttribute('style', (barStyleMap[pl] || 'background:var(--secondary)') + ';width:' + pct + '%');
+      track.appendChild(bar);
+
+      row.appendChild(header);
+      row.appendChild(track);
+      container.appendChild(row);
+    });
+  }
+
+  // ---- 10. Top Posts ----
+
+  function renderTopPosts(posts) {
+    var container = document.getElementById('top-posts-list');
+    if (!container) return;
+
+    if (!posts || posts.length === 0) {
+      var p = document.createElement('p');
+      p.className = 'text-xs text-on-surface-variant';
+      p.textContent = 'No posts published yet.';
+      container.appendChild(p);
+      return;
+    }
+
+    var sorted = posts.slice().sort(function(a, b) {
+      return new Date(b.publishedAt || b.createdAt) - new Date(a.publishedAt || a.createdAt);
+    }).slice(0, 3);
+
+    sorted.forEach(function(post, idx) {
+      var platforms = post.platforms || [];
+      var firstPlatform = platforms[0] || 'x';
+      var rankBg = idx === 0 ? 'bg-secondary-container text-on-secondary-container' : 'bg-surface-container text-on-surface-variant';
+
+      var row = document.createElement('div');
+      row.className = 'flex items-start gap-3';
+
+      var rank = document.createElement('div');
+      rank.className = 'w-7 h-7 rounded-xl ' + rankBg + ' flex items-center justify-center text-xs font-black shrink-0';
+      rank.textContent = String(idx + 1);
+
+      var content = document.createElement('div');
+      content.className = 'flex-1';
+
+      var titleRow = document.createElement('div');
+      titleRow.className = 'flex items-center gap-1.5 mb-0.5';
+      titleRow.appendChild(makePlatformIconDiv(firstPlatform, 'w-4 h-4'));
+
+      var titleText = document.createElement('p');
+      titleText.className = 'text-sm font-semibold text-on-surface';
+      titleText.textContent = (post.text || '').slice(0, 50);
+      titleRow.appendChild(titleText);
+
+      var meta = document.createElement('div');
+      meta.className = 'flex items-center gap-3 text-xs text-on-surface-variant mt-1';
+
+      var platSpan = document.createElement('span');
+      platSpan.textContent = platforms.map(platformLabel).join(', ');
+
+      var agoSpan = document.createElement('span');
+      agoSpan.className = 'ml-auto';
+      agoSpan.textContent = timeAgo(post.publishedAt || post.createdAt);
+
+      meta.appendChild(platSpan);
+      meta.appendChild(agoSpan);
+
+      content.appendChild(titleRow);
+      content.appendChild(meta);
+      row.appendChild(rank);
+      row.appendChild(content);
+      container.appendChild(row);
+    });
+  }
+
+  // ---- 11. Posts Published chart ----
+
+  function renderEngagementChart(posts) {
+    var container = document.getElementById('engagement-chart');
+    if (!container) return;
+
+    var dayLabels = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+    var today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    var dayCounts = [];
+    for (var i = 6; i >= 0; i--) {
+      var d = new Date(today);
+      d.setDate(d.getDate() - i);
+      dayCounts.push({ date: d, count: 0, label: dayLabels[d.getDay()] });
+    }
+
+    posts.forEach(function(post) {
+      var ts = new Date(post.publishedAt || post.createdAt);
+      ts.setHours(0, 0, 0, 0);
+      dayCounts.forEach(function(day) {
+        if (day.date.getTime() === ts.getTime()) day.count++;
+      });
+    });
+
+    var maxCount = Math.max.apply(null, dayCounts.map(function(d) { return d.count; }));
+    var barMaxPx = 120;
+
+    dayCounts.forEach(function(day) {
+      var pct   = maxCount > 0 ? day.count / maxCount : 0;
+      var barPx = Math.max(6, Math.round(pct * barMaxPx));
+
+      var col = document.createElement('div');
+      col.className = 'flex-1 flex flex-col items-center gap-1';
+
+      var barWrap = document.createElement('div');
+      barWrap.className = 'w-full flex items-end justify-center';
+      barWrap.style.height = barMaxPx + 'px';
+
+      var bar = document.createElement('div');
+      bar.className = 'w-full rounded-t-sm';
+      bar.style.height = barPx + 'px';
+      bar.style.background = 'var(--secondary)';
+      bar.title = day.count + ' post' + (day.count !== 1 ? 's' : '');
+
+      barWrap.appendChild(bar);
+
+      var labelEl = document.createElement('span');
+      labelEl.className = 'text-[10px] text-on-surface-variant';
+      labelEl.textContent = day.label;
+
+      col.appendChild(barWrap);
+      col.appendChild(labelEl);
+      container.appendChild(col);
+    });
+  }
+
+  // ---- Main entry point ----
+
+  function initPreviewNames(status) {
+    var x  = status.x  || {};
+    var li = status.linkedin || {};
+    var ig = status.instagram || {};
+    var fb = status.facebook || {};
+
+    // X preview
+    if (x.displayName) {
+      var xName = document.getElementById('preview-x-name');
+      var xHandle = document.getElementById('preview-x-handle');
+      var xAvatar = document.getElementById('preview-x-avatar');
+      if (xName) xName.textContent = x.displayName;
+      if (xHandle) xHandle.textContent = '@' + (x.username || x.displayName) + ' · now';
+      if (xAvatar) xAvatar.textContent = x.displayName.slice(0,2).toUpperCase();
+    }
+
+    // LinkedIn preview
+    if (li.displayName) {
+      var liName = document.getElementById('preview-li-name');
+      var liAvatar = document.getElementById('preview-li-avatar');
+      if (liName) liName.textContent = li.displayName;
+      if (liAvatar) liAvatar.textContent = li.displayName.slice(0,2).toUpperCase();
+    }
+
+    // Instagram preview — use Facebook page name if available (Instagram is linked via FB page)
+    var igName = fb.pageName || ig.pageName || null;
+    if (igName) {
+      var igHandle = igName.toLowerCase().replace(/\s+/g, '_');
+      var igUser = document.getElementById('preview-ig-username');
+      var igUserCap = document.getElementById('preview-ig-username-caption');
+      var igAvatar = document.querySelector('#preview-instagram .ig-gradient + div div, #preview-instagram .w-8');
+      if (igUser) igUser.textContent = igHandle;
+      if (igUserCap) igUserCap.textContent = igHandle;
+    }
+  }
+
+  async function initRealData() {
+    renderGreeting();
+
+    var posts     = [];
+    var scheduled = [];
+
+    try {
+      var results = await Promise.all([
+        fetch(BACKEND + '/api/posts')
+          .then(function(r) { return r.ok ? r.json() : []; })
+          .catch(function() { return []; }),
+        fetch(BACKEND + '/api/scheduled')
+          .then(function(r) { return r.ok ? r.json() : []; })
+          .catch(function() { return []; }),
+        fetch(BACKEND + '/auth/status')
+          .then(function(r) { return r.ok ? r.json() : {}; })
+          .catch(function() { return {}; })
+      ]);
+      posts     = Array.isArray(results[0]) ? results[0] : [];
+      scheduled = Array.isArray(results[1]) ? results[1] : [];
+      initPreviewNames(results[2] || {});
+    } catch (e) {
+      // Backend not running — render all empty states gracefully
+    }
+
+    // Dashboard sections
+    renderDashStats(posts, scheduled);
+    renderRecentPosts(posts);
+    renderUpcoming(scheduled);
+    renderBestPerformer(posts);
+    renderTopHashtags(posts);
+
+    // Calendar
+    initCalendar(scheduled);
+
+    // Analytics sections
+    renderAnalyticsStats(posts, scheduled);
+    renderPlatformBreakdown(posts);
+    renderTopPosts(posts);
+    renderEngagementChart(posts);
   }
 
   async function aiSuggestHashtags() {

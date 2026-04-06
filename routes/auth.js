@@ -15,12 +15,12 @@ const SUCCESS_HTML = `<html><body><script>
 
 const fail = (res, msg) => res.status(400).send(`<p>Error: ${msg}</p>`)
 
-// Status — which platforms are connected
+// Status — which platforms are connected + display names
 router.get('/status', (_req, res) => {
   const tokens = getTokens()
   const status = {}
   for (const [p, d] of Object.entries(tokens)) {
-    status[p] = { connected: true, savedAt: d.savedAt }
+    status[p] = { connected: true, savedAt: d.savedAt, displayName: d.displayName || null, username: d.username || null, pageName: d.pageName || null }
   }
   res.json(status)
 })
@@ -35,7 +35,8 @@ router.get('/x/callback', async (req, res) => {
   if (req.query.state !== req.session.xState) return fail(res, 'State mismatch')
   try {
     const tok = await twitter.exchangeCode(req.query.code, req.query.state)
-    saveToken('x', tok)
+    const user = await twitter.getUser(tok.access_token)
+    saveToken('x', { ...tok, displayName: user.name, username: user.username })
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.error_description || e.message) }
 })
@@ -52,7 +53,7 @@ router.get('/linkedin/callback', async (req, res) => {
   try {
     const tok = await linkedin.exchangeCode(req.query.code)
     const profile = await linkedin.getProfile(tok.access_token)
-    saveToken('linkedin', { ...tok, personId: profile.sub })
+    saveToken('linkedin', { ...tok, personId: profile.sub, displayName: profile.name || null, username: profile.email || null })
     res.send(SUCCESS_HTML)
   } catch (e) { fail(res, e.response?.data?.message || e.message) }
 })
