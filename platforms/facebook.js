@@ -35,21 +35,33 @@ export async function getPages(userToken) {
 }
 
 export async function postToPage(pageToken, pageId, message) {
-  const { data } = await axios.post(
-    `https://graph.facebook.com/v19.0/${pageId}/feed`,
-    new URLSearchParams({ message, access_token: pageToken }),
-    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-  )
-  return data
+  console.log('[facebook] postToPage pageId=%s message=%s', pageId, message?.slice(0, 50))
+  try {
+    const { data } = await axios.post(
+      `https://graph.facebook.com/v19.0/${pageId}/feed`,
+      { message },
+      { params: { access_token: pageToken } }
+    )
+    return data
+  } catch (e) {
+    console.error('[facebook] postToPage error:', JSON.stringify(e.response?.data))
+    throw e
+  }
 }
 
 export async function postPhotoToPage(pageToken, pageId, message, imageUrl) {
-  const { data } = await axios.post(
-    `https://graph.facebook.com/v19.0/${pageId}/photos`,
-    new URLSearchParams({ caption: message, url: imageUrl, access_token: pageToken }),
-    { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-  )
-  return data
+  console.log('[facebook] postPhotoToPage pageId=%s imageUrl=%s', pageId, imageUrl)
+  try {
+    const { data } = await axios.post(
+      `https://graph.facebook.com/v19.0/${pageId}/photos`,
+      { caption: message, url: imageUrl },
+      { params: { access_token: pageToken } }
+    )
+    return data
+  } catch (e) {
+    console.error('[facebook] postPhotoToPage error:', JSON.stringify(e.response?.data))
+    throw e
+  }
 }
 
 export async function getInstagramAccountId(pageId, pageToken) {

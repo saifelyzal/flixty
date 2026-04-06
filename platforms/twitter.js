@@ -4,7 +4,7 @@ import axios from 'axios'
 const CLIENT_ID = process.env.X_CLIENT_ID
 const CLIENT_SECRET = process.env.X_CLIENT_SECRET
 const REDIRECT_URI = `${process.env.BASE_URL}/auth/x/callback`
-const SCOPES = ['tweet.write', 'users.read', 'offline.access']
+const SCOPES = ['tweet.read', 'tweet.write', 'users.read', 'offline.access']
 
 // In-memory PKCE state (fine for single-user local app)
 const pkceStore = new Map()
